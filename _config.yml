@@ -1,13 +1,10 @@
-# ==========================================
-# ARCHIVO: _config.yml
-# ==========================================
-
+# _config.yml
 title: "Reflexiones Académicas"
 description: "Blog académico de Andrea Bascur"
 author: "Andrea Bascur"
-email: "a.bascur@universidad.edu"
+email: "ambascurpinto@gmail.com"
 baseurl: ""
-url: "https://tu-usuario.github.io"
+url: "https://ambascur.github.io"
 
 markdown: kramdown
 highlighter: rouge
@@ -15,6 +12,10 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
 
+# Configuración de posts
+permalink: /:categories/:year/:month/:day/:title/
+
+# Configuración de build
 exclude:
   - Gemfile
   - Gemfile.lock
