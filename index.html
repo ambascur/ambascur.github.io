@@ -4,26 +4,35 @@ layout: default
 
 <div id="home" class="section active">
     <div class="abstract">
-        <strong>Resumen:</strong> Este blog académico presenta reflexiones, análisis y discusiones sobre temas contemporáneos en matemáticas, ciencias, filosofía, metodología de investigación y cualquier tema que llegue a causarme curiosidad. No soy profesional ni me dedico a cada cosa de la que escribo, por lo que es menester aclarar que no busco más que aprender, incluso cuando eso llegue al error. El objetivo es fomentar el diálogo académico respetuoso, a demás de, por supuesto, mi dialogo personal, y compartir perspectivas críticas sobre fenómenos complejos.
+        <strong>Resumen:</strong> Este blog académico presenta reflexiones, análisis y discusiones sobre temas contemporáneos en matemáticas, ciencias, filosofía y metodología de investigación. El objetivo es fomentar el diálogo académico y compartir perspectivas críticas sobre fenómenos complejos.
     </div>
 
     <div class="section-title">Últimas Publicaciones</div>
     
-    {% for post in site.posts limit:3 %}
-    <div class="post">
-        <div class="post-title">
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    {% if site.posts.size > 0 %}
+        {% for post in site.posts limit:3 %}
+        <div class="post">
+            <div class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </div>
+            <div class="post-meta">Publicado: {{ post.date | date: "%d de %B, %Y" }} | Categoría: {{ post.categories | first | capitalize }}</div>
+            <div class="post-content">
+                {{ post.excerpt | strip_html | truncatewords: 30 }}
+                <a href="{{ post.url | relative_url }}">[Leer más...]</a>
+            </div>
+            {% if post.keywords %}
+            <div class="keywords"><strong>Palabras clave:</strong> {{ post.keywords | join: ', ' }}</div>
+            {% endif %}
         </div>
-        <div class="post-meta">Publicado: {{ post.date | date: "%d de %B, %Y" }} | Categoría: {{ post.categories | first | capitalize }}</div>
-        <div class="post-content">
-            {{ post.excerpt | strip_html | truncatewords: 30 }}
-            <a href="{{ post.url | relative_url }}">[Leer más...]</a>
+        {% endfor %}
+    {% else %}
+        <div class="post">
+            <div class="post-title">Próximamente...</div>
+            <div class="post-content">
+                Los posts aparecerán aquí automáticamente cuando agregues archivos a la carpeta _posts/
+            </div>
         </div>
-        {% if post.keywords %}
-        <div class="keywords"><strong>Palabras clave:</strong> {{ post.keywords | join: ', ' }}</div>
-        {% endif %}
-    </div>
-    {% endfor %}
+    {% endif %}
 </div>
 
 <div id="posts" class="section">
@@ -86,8 +95,8 @@ layout: default
     <div class="section-title">Líneas de Investigación</div>
     
     <div class="post-content">
-        <strong>1. Metodología de Investigación Interdisciplinaria e integral</strong><br>
-        Desarrollo y evaluación de estrategias metodológicas innovadoras para el estudio de fenómenos complejos. Particular énfasis en métodos mixtos y pensando en un enfoque polimata.
+        <strong>1. Metodología de Investigación Interdisciplinaria</strong><br>
+        Desarrollo y evaluación de estrategias metodológicas innovadoras para el estudio de fenómenos complejos. Particular énfasis en métodos mixtos y aproximaciones participativas.
     </div>
 
     <div class="post-content">
@@ -105,7 +114,7 @@ layout: default
     <div class="section-title">Acerca del Autor</div>
     
     <div class="post-content">
-        Andrea Bascur es estudiante autodidacta e interdisciplinaria en ciencias, matemáticas, filosofía, artes, etc. Con conocimientos informaticos a nivel profesional.
+        Andrea Bascur es investigadora y académica con formación interdisciplinaria en ciencias, matemáticas y filosofía. Su trabajo se enfoca en la intersección entre metodologías cuantitativas y cualitativas, con especial interés en aplicaciones de sistemas complejos y epistemología de la ciencia.
     </div>
 
     <div class="post-content">
