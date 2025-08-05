@@ -194,6 +194,167 @@
             color: #666;
         }
 
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                max-width: 100%;
+                margin: 0;
+                box-shadow: none;
+            }
+            
+            .paper-content {
+                padding: 15px;
+                padding-top: 15px;
+            }
+            
+            .header {
+                margin-bottom: 25px;
+                padding-bottom: 15px;
+            }
+            
+            .blog-title {
+                font-size: 20px;
+                margin-bottom: 8px;
+            }
+            
+            .author-info {
+                font-size: 13px;
+            }
+            
+            .affiliation {
+                font-size: 11px;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                gap: 10px;
+                margin: 15px 0;
+                align-items: center;
+            }
+            
+            .nav-item {
+                font-size: 16px;
+                padding: 8px 15px;
+                width: 100%;
+                max-width: 200px;
+                text-align: center;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                border-bottom: 2px solid transparent;
+            }
+            
+            .section-title {
+                font-size: 16px;
+                margin: 20px 0 10px 0;
+            }
+            
+            .abstract {
+                padding: 15px;
+                margin: 15px 0;
+                font-size: 14px;
+            }
+            
+            .post {
+                margin-bottom: 25px;
+                padding-bottom: 15px;
+            }
+            
+            .post-title {
+                font-size: 15px;
+                line-height: 1.4;
+            }
+            
+            .post-meta {
+                font-size: 11px;
+                margin-bottom: 10px;
+            }
+            
+            .post-content {
+                font-size: 14px;
+                line-height: 1.5;
+                margin-bottom: 10px;
+            }
+            
+            .keywords {
+                font-size: 11px;
+            }
+            
+            .category-nav {
+                flex-direction: column;
+                gap: 8px;
+                padding: 10px;
+                margin: 15px 0;
+            }
+            
+            .category-item {
+                font-size: 14px;
+                padding: 10px 15px;
+                text-align: center;
+                width: 100%;
+            }
+            
+            .citation {
+                padding: 10px;
+                margin: 15px 0;
+                font-size: 13px;
+            }
+            
+            .footer {
+                margin-top: 25px;
+                padding-top: 15px;
+                font-size: 11px;
+            }
+        }
+
+        /* Tablets */
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                max-width: 90%;
+            }
+            
+            .paper-content {
+                padding: 20px;
+            }
+            
+            .blog-title {
+                font-size: 22px;
+            }
+            
+            .nav-menu {
+                gap: 20px;
+            }
+            
+            .category-nav {
+                gap: 10px;
+            }
+        }
+
+        /* Mejoras generales para touch */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-item {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .category-item {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .post-title a {
+                display: block;
+                padding: 5px 0;
+            }
+        }
+
         @media print {
             body { background: white; padding: 0; }
             .container { box-shadow: none; }
@@ -207,7 +368,7 @@
             <div class="header">
                 <div class="blog-title">{{ site.title }}</div>
                 <div class="author-info">{{ site.author }}</div>
-                <div class="affiliation">Autidadacta</div>
+                <div class="affiliation">Universidad Nacional • Departamento de Ciencias</div>
             </div>
 
             <div class="nav-menu">
