@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 297mm;
+        }
+
+        .paper-content {
+            padding: 25.4mm;
+            padding-top: 20mm;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+        }
+
+        .blog-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .author-info {
+            font-size: 14px;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .affiliation {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        .nav-item {
+            cursor: pointer;
+            padding: 5px 10px;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .nav-item:hover {
+            border-bottom-color: #333;
+        }
+
+        .post {
+            margin-bottom: 40px;
+        }
+
+        .post-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .post-meta {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .abstract {
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #333;
+            font-style: italic;
+        }
+
+        .post-content {
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .post-content h1, .post-content h2, .post-content h3 {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .post-content h1 {
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .post-content h2 {
+            font-size: 16px;
+        }
+
+        .post-content h3 {
+            font-size: 14px;
+        }
+
+        .post-content p {
+            margin-bottom: 15px;
+        }
+
+        .post-content ol, .post-content ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        .post-content li {
+            margin-bottom: 5px;
+        }
+
+        .citation {
+            background-color: #f0f0f0;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 3px solid #666;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        .keywords {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 12px;
+            color: #666;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+            .nav-menu { display: none; }
+            .back-link { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="paper-content">
+            <div class="header">
+                <div class="blog-title">{{ site.title }}</div>
+                <div class="author-info">{{ site.author }}</div>
+                <div class="affiliation">Universidad Nacional • Departamento de Ciencias</div>
+            </div>
+
+            <div class="nav-menu">
+                <a href="{{ '/' | relative_url }}" class="nav-item">Inicio</a>
+                <a href="{{ '/#posts' | relative_url }}" class="nav-item">Publicaciones</a>
+                <a href="{{ '/#research' | relative_url }}" class="nav-item">Investigación</a>
+                <a href="{{ '/#about' | relative_url }}" class="nav-item">Acerca de</a>
+            </div>
+
+            <a href="{{ '/#posts' | relative_url }}" class="back-link">← Volver a publicaciones</a>
+
+            <article class="post">
+                <div class="post-title">{{ page.title }}</div>
+                <div class="post-meta">
+                    Publicado: {{ page.date | date: "%d de %B, %Y" }} | 
+                    Categoría: {{ page.categories | first | capitalize }}
+                </div>
+                
+                {% if page.excerpt %}
+                <div class="abstract">
+                    <strong>Resumen:</strong> {{ page.excerpt }}
+                </div>
+                {% endif %}
+
+                <div class="post-content">
+                    {{ content }}
+                </div>
+
+                {% if page.keywords %}
+                <div class="keywords">
+                    <strong>Palabras clave:</strong> {{ page.keywords | join: ', ' }}
+                </div>
+                {% endif %}
+            </article>
+
+            <div class="footer">
+                © {{ site.time | date: '%Y' }} {{ site.author }}. Este blog académico está licenciado bajo Creative Commons Attribution 4.0 International License.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
