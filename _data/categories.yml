@@ -1,0 +1,23 @@
+# ==========================================
+# ARCHIVO: _data/categories.yml
+# ==========================================
+
+matematicas:
+  name: "Matemáticas"
+  description: "Análisis matemático y aplicaciones"
+
+ciencias:
+  name: "Ciencias"
+  description: "Física, química, biología"
+
+filosofia:
+  name: "Filosofía"
+  description: "Epistemología y filosofía de la ciencia"
+
+metodologia:
+  name: "Metodología"
+  description: "Métodos de investigación"
+
+tecnologia:
+  name: "Tecnología"
+  description: "IA, algoritmos y tecnología"
