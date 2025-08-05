@@ -1,0 +1,130 @@
+---
+layout: default
+---
+
+<div id="home" class="section active">
+    <div class="abstract">
+        <strong>Resumen:</strong> Este blog académico presenta reflexiones, análisis y discusiones sobre temas contemporáneos en matemáticas, ciencias, filosofía y metodología de investigación. El objetivo es fomentar el diálogo académico y compartir perspectivas críticas sobre fenómenos complejos.
+    </div>
+
+    <div class="section-title">Últimas Publicaciones</div>
+    
+    {% for post in site.posts limit:3 %}
+    <div class="post">
+        <div class="post-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </div>
+        <div class="post-meta">Publicado: {{ post.date | date: "%d de %B, %Y" }} | Categoría: {{ post.categories | first | capitalize }}</div>
+        <div class="post-content">
+            {{ post.excerpt | strip_html | truncatewords: 30 }}
+            <a href="{{ post.url | relative_url }}">[Leer más...]</a>
+        </div>
+        {% if post.keywords %}
+        <div class="keywords"><strong>Palabras clave:</strong> {{ post.keywords | join: ', ' }}</div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+<div id="posts" class="section">
+    <div class="section-title">Archivo de Publicaciones</div>
+    
+    <div class="category-nav">
+        <div class="category-item active" onclick="showCategory('todas')">Todas</div>
+        <div class="category-item" onclick="showCategory('matematicas')">Matemáticas</div>
+        <div class="category-item" onclick="showCategory('ciencias')">Ciencias</div>
+        <div class="category-item" onclick="showCategory('filosofia')">Filosofía</div>
+        <div class="category-item" onclick="showCategory('metodologia')">Metodología</div>
+        <div class="category-item" onclick="showCategory('tecnologia')">Tecnología</div>
+    </div>
+
+    <div id="todas" class="category-section active">
+        {% for post in site.posts %}
+        <div class="post">
+            <div class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </div>
+            <div class="post-meta">Publicado: {{ post.date | date: "%d de %B, %Y" }} | Categoría: {{ post.categories | first | capitalize }}</div>
+            <div class="post-content">
+                {{ post.excerpt | strip_html | truncatewords: 20 }}
+                <a href="{{ post.url | relative_url }}">[Leer más...]</a>
+            </div>
+            {% if post.keywords %}
+            <div class="keywords"><strong>Palabras clave:</strong> {{ post.keywords | join: ', ' }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    {% for category in site.data.categories %}
+    <div id="{{ category[0] }}" class="category-section">
+        {% assign category_posts = site.categories[category[0]] %}
+        {% for post in category_posts %}
+        <div class="post">
+            <div class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </div>
+            <div class="post-meta">Publicado: {{ post.date | date: "%d de %B, %Y" }}</div>
+            <div class="post-content">
+                {{ post.excerpt | strip_html | truncatewords: 20 }}
+                <a href="{{ post.url | relative_url }}">[Leer más...]</a>
+            </div>
+            {% if post.keywords %}
+            <div class="keywords"><strong>Palabras clave:</strong> {{ post.keywords | join: ', ' }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    <div class="citation">
+        "La investigación interdisciplinaria requiere no solo dominio técnico, sino también flexibilidad conceptual para navegar entre paradigmas diversos." (Bascur, 2024)
+    </div>
+</div>
+
+<div id="research" class="section">
+    <div class="section-title">Líneas de Investigación</div>
+    
+    <div class="post-content">
+        <strong>1. Metodología de Investigación Interdisciplinaria</strong><br>
+        Desarrollo y evaluación de estrategias metodológicas innovadoras para el estudio de fenómenos complejos. Particular énfasis en métodos mixtos y aproximaciones participativas.
+    </div>
+
+    <div class="post-content">
+        <strong>2. Matemáticas Aplicadas y Modelado</strong><br>
+        Aplicación de herramientas matemáticas avanzadas para modelar sistemas complejos, desde dinámicas poblacionales hasta redes sociales.
+    </div>
+
+    <div class="post-content">
+        <strong>3. Filosofía de la Ciencia y Epistemología</strong><br>
+        Análisis crítico de los fundamentos epistemológicos que sustentan la investigación científica. Exploración de paradigmas emergentes y su impacto en la práctica investigativa.
+    </div>
+</div>
+
+<div id="about" class="section">
+    <div class="section-title">Acerca del Autor</div>
+    
+    <div class="post-content">
+        Andrea Bascur es investigadora y académica con formación interdisciplinaria en ciencias, matemáticas y filosofía. Su trabajo se enfoca en la intersección entre metodologías cuantitativas y cualitativas, con especial interés en aplicaciones de sistemas complejos y epistemología de la ciencia.
+    </div>
+
+    <div class="post-content">
+        Su investigación abarca desde modelos matemáticos aplicados hasta reflexiones filosóficas sobre la naturaleza del conocimiento científico, manteniendo siempre una perspectiva integradora que trasciende las fronteras disciplinarias tradicionales.
+    </div>
+
+    <div class="section-title">Áreas de Especialización</div>
+    <div class="post-content">
+        • Metodología de Investigación Interdisciplinaria<br>
+        • Matemáticas Aplicadas y Modelado<br>
+        • Filosofía de la Ciencia y Epistemología<br>
+        • Sistemas Complejos y Teoría de Grafos<br>
+        • Ética en Tecnología y Algoritmos
+    </div>
+
+    <div class="section-title">Contacto</div>
+    <div class="post-content">
+        Email: a.bascur@universidad.edu<br>
+        ORCID: 0000-0000-0000-0000<br>
+        ResearchGate: Andrea Bascur
+    </div>
+</div>
