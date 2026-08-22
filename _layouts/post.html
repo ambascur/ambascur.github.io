@@ -82,6 +82,17 @@
                     </div>
                 </header>
 
+                {% assign page_img = page.image %}
+                {% if page_img == nil or page_img == "" %}{% assign page_img = page.cover %}{% endif %}
+                {% if page_img and page_img != "" %}
+                <figure class="editorial-featured-figure">
+                    <img src="{{ page_img | relative_url }}" alt="{{ page.title }}" class="editorial-featured-img">
+                    <figcaption class="editorial-caption">
+                        FIGURA DE ARCHIVO EDITORIAL • {{ page.title | upcase }}
+                    </figcaption>
+                </figure>
+                {% endif %}
+
                 {% if page.excerpt and page.excerpt != "" %}
                 <div class="abstract">
                     <strong>ABSTRACT / RESUMEN:</strong>

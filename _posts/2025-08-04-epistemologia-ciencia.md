@@ -2,6 +2,7 @@
 layout: post
 title: "Reflexiones sobre la Epistemología de la Ciencia"
 date: 2025-08-04
+image: assets/images/epistemologia.png
 categories:
   - Filosofía
 keywords:

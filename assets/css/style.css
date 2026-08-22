@@ -6,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap');
 
 :root {
-    /* Modo Claro: Alto Contraste Monocromático Tipo Papel Imprimi */
+    /* Modo Claro: Alto Contraste Monocromático Tipo Papel Imprenta */
     --bg-body: #f7f7f7;
     --bg-paper: #ffffff;
     --bg-subtle: #f0f0f0;
@@ -222,7 +222,7 @@ body {
 }
 
 /* ==========================================================================
-   SECCIONES Y TITULARES
+   SECCIONES Y FOTOGRAFÍA EDITORIAL (TIPO REVISTA AWARE / OXFORD)
    ========================================================================== */
 
 .section {
@@ -259,6 +259,53 @@ body {
     padding: 3px 10px;
 }
 
+/* Hero Display Heading + Imagen Principal Destacada */
+.editorial-hero-heading {
+    font-family: var(--font-serif-display);
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1.1;
+    text-align: center;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+.editorial-featured-figure {
+    margin: 24px 0 36px 0;
+    border: 1px solid var(--border-heavy);
+    background: var(--bg-subtle);
+    padding: 12px;
+}
+
+.editorial-featured-img {
+    width: 100%;
+    height: auto;
+    max-height: 520px;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(100%) contrast(110%);
+    border: 1px solid var(--border-subtle);
+    transition: filter var(--transition-fast);
+}
+
+.editorial-featured-figure:hover .editorial-featured-img {
+    filter: grayscale(80%) contrast(115%);
+}
+
+.editorial-caption {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border-subtle);
+    text-align: left;
+}
+
 /* Abstract Editorial */
 .abstract {
     background: var(--bg-subtle);
@@ -285,19 +332,46 @@ body {
 }
 
 /* ==========================================================================
-   TARJETAS DE ARTÍCULOS (PAPER / JOURNAL LIST)
+   TARJETAS DE ARTÍCULOS CON IMÁGENES
    ========================================================================== */
 
 .post-card {
     background: var(--bg-paper);
     border: 1px solid var(--border-color);
     padding: 28px 32px;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
     transition: background var(--transition-fast);
 }
 
 .post-card:hover {
     background: var(--bg-subtle);
+}
+
+.post-card-grid {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 24px;
+    align-items: start;
+}
+
+@media screen and (max-width: 768px) {
+    .post-card-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.post-thumbnail-frame {
+    border: 1px solid var(--border-heavy);
+    padding: 6px;
+    background: var(--bg-paper);
+}
+
+.post-thumbnail-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(100%) contrast(110%);
 }
 
 .post-header {
@@ -749,6 +823,10 @@ body {
 
     .blog-title {
         font-size: 2.1rem;
+    }
+
+    .editorial-hero-heading {
+        font-size: 1.6rem;
     }
 
     .nav-menu {

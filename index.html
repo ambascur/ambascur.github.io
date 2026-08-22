@@ -4,6 +4,19 @@ layout: default
 
 <!-- SECCIÓN INICIO (#home) -->
 <div id="home" class="section active">
+    <!-- Titular Editorial Principal estilo AWARE -->
+    <h2 class="editorial-hero-heading">
+        REFLEXIONES, INVESTIGACIÓN Y CRÍTICA: PERSPECTIVAS EN FILOSOFÍA Y METODOLOGÍA
+    </h2>
+
+    <!-- Fotografía Editorial de Archivo -->
+    <figure class="editorial-featured-figure">
+        <img src="{{ '/assets/images/hero_editorial.png' | relative_url }}" alt="Fotografía de archivo editorial" class="editorial-featured-img">
+        <figcaption class="editorial-caption">
+            FOTOGRAFÍA DE ARCHIVO • SALÓN DE INVESTIGACIÓN ACADÉMICA Y DISCUSIÓN CONCEPTUAL (SMITH COLLEGE SPECIAL COLLECTIONS, 1975)
+        </figcaption>
+    </figure>
+
     <!-- Abstract Principal del Blog -->
     <div class="abstract">
         <strong>ABSTRACT / DECLARACIÓN EDITORIAL:</strong>
@@ -19,48 +32,60 @@ layout: default
     {% if site.posts.size > 0 %}
         {% for post in site.posts limit:3 %}
         <article class="post-card">
-            <div class="post-header">
-                <h2 class="post-title">
-                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                </h2>
-                {% assign cat = post.categories | first %}
-                {% if cat %}
-                <span class="category-badge" onclick="filterArchiveFromHome('category', '{{ cat }}')">
-                    {{ cat }}
-                </span>
+            <div class="post-card-grid">
+                <div>
+                    <div class="post-header">
+                        <h3 class="post-title">
+                            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                        </h3>
+                        {% assign cat = post.categories | first %}
+                        {% if cat %}
+                        <span class="category-badge" onclick="filterArchiveFromHome('category', '{{ cat }}')">
+                            {{ cat }}
+                        </span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="post-meta">
+                        <span>FECHA: {{ post.date | date: "%d DE %B, %Y" | upcase }}</span>
+                        {% assign words = post.content | number_of_words %}
+                        {% assign minutes = words | divided_by: 180 %}
+                        {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
+                        <span>/ LECTURA: ~{{ minutes }} MIN</span>
+                    </div>
+                    
+                    <div class="post-excerpt">
+                        {{ post.excerpt | strip_html | truncatewords: 30 }}
+                    </div>
+                    
+                    <a href="{{ post.url | relative_url }}" class="read-more-link">
+                        LEER ARTÍCULO COMPLETO →
+                    </a>
+                    
+                    {% assign post_tags = post.keywords %}
+                    {% if post_tags == nil or post_tags.size == 0 %}
+                        {% assign post_tags = post.tags %}
+                    {% endif %}
+
+                    {% if post_tags and post_tags.size > 0 %}
+                    <div class="keywords-container">
+                        {% for tag in post_tags %}
+                        <span class="tag-pill" onclick="filterArchiveFromHome('tag', '{{ tag }}')">
+                            [ {{ tag }} ]
+                        </span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% assign post_img = post.image %}
+                {% if post_img == nil or post_img == "" %}{% assign post_img = post.cover %}{% endif %}
+                {% if post_img and post_img != "" %}
+                <div class="post-thumbnail-frame">
+                    <img src="{{ post_img | relative_url }}" alt="{{ post.title }}" class="post-thumbnail-img">
+                </div>
                 {% endif %}
             </div>
-            
-            <div class="post-meta">
-                <span>FECHA: {{ post.date | date: "%d DE %B, %Y" | upcase }}</span>
-                {% assign words = post.content | number_of_words %}
-                {% assign minutes = words | divided_by: 180 %}
-                {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
-                <span>/ LECTURA: ~{{ minutes }} MIN</span>
-            </div>
-            
-            <div class="post-excerpt">
-                {{ post.excerpt | strip_html | truncatewords: 32 }}
-            </div>
-            
-            <a href="{{ post.url | relative_url }}" class="read-more-link">
-                LEER ARTÍCULO COMPLETO →
-            </a>
-            
-            {% assign post_tags = post.keywords %}
-            {% if post_tags == nil or post_tags.size == 0 %}
-                {% assign post_tags = post.tags %}
-            {% endif %}
-
-            {% if post_tags and post_tags.size > 0 %}
-            <div class="keywords-container">
-                {% for tag in post_tags %}
-                <span class="tag-pill" onclick="filterArchiveFromHome('tag', '{{ tag }}')">
-                    [ {{ tag }} ]
-                </span>
-                {% endfor %}
-            </div>
-            {% endif %}
         </article>
         {% endfor %}
     {% else %}
@@ -121,43 +146,55 @@ layout: default
                  data-tags="{{ post_tags_str | escape }}"
                  data-search="{{ full_search_text | downcase | escape }}">
             
-            <div class="post-header">
-                <h2 class="post-title">
-                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                </h2>
-                {% assign cat = post.categories | first %}
-                {% if cat %}
-                <span class="category-badge" onclick="selectCategoryFilter('{{ cat }}')">
-                    {{ cat }}
-                </span>
+            <div class="post-card-grid">
+                <div>
+                    <div class="post-header">
+                        <h3 class="post-title">
+                            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                        </h3>
+                        {% assign cat = post.categories | first %}
+                        {% if cat %}
+                        <span class="category-badge" onclick="selectCategoryFilter('{{ cat }}')">
+                            {{ cat }}
+                        </span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="post-meta">
+                        <span>FECHA: {{ post.date | date: "%d DE %B, %Y" | upcase }}</span>
+                        {% assign words = post.content | number_of_words %}
+                        {% assign minutes = words | divided_by: 180 %}
+                        {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
+                        <span>/ LECTURA: ~{{ minutes }} MIN</span>
+                    </div>
+                    
+                    <div class="post-excerpt">
+                        {{ post.excerpt | strip_html | truncatewords: 35 }}
+                    </div>
+                    
+                    <a href="{{ post.url | relative_url }}" class="read-more-link">
+                        LEER ARTÍCULO COMPLETO →
+                    </a>
+
+                    {% if post_tags and post_tags.size > 0 %}
+                    <div class="keywords-container">
+                        {% for tag in post_tags %}
+                        <span class="tag-pill" onclick="selectTagFilter('{{ tag }}')">
+                            [ {{ tag }} ]
+                        </span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% assign post_img = post.image %}
+                {% if post_img == nil or post_img == "" %}{% assign post_img = post.cover %}{% endif %}
+                {% if post_img and post_img != "" %}
+                <div class="post-thumbnail-frame">
+                    <img src="{{ post_img | relative_url }}" alt="{{ post.title }}" class="post-thumbnail-img">
+                </div>
                 {% endif %}
             </div>
-            
-            <div class="post-meta">
-                <span>FECHA: {{ post.date | date: "%d DE %B, %Y" | upcase }}</span>
-                {% assign words = post.content | number_of_words %}
-                {% assign minutes = words | divided_by: 180 %}
-                {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
-                <span>/ LECTURA: ~{{ minutes }} MIN</span>
-            </div>
-            
-            <div class="post-excerpt">
-                {{ post.excerpt | strip_html | truncatewords: 35 }}
-            </div>
-            
-            <a href="{{ post.url | relative_url }}" class="read-more-link">
-                LEER ARTÍCULO COMPLETO →
-            </a>
-
-            {% if post_tags and post_tags.size > 0 %}
-            <div class="keywords-container">
-                {% for tag in post_tags %}
-                <span class="tag-pill" onclick="selectTagFilter('{{ tag }}')">
-                    [ {{ tag }} ]
-                </span>
-                {% endfor %}
-            </div>
-            {% endif %}
         </article>
         {% endfor %}
     </div>
