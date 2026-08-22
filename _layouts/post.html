@@ -7,10 +7,8 @@
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
     <meta name="author" content="{{ site.author }}">
 
-    <!-- Enlace a la hoja de estilos unificada -->
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
-    <!-- Script de inicialización de tema -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme');
@@ -23,7 +21,6 @@
     </script>
 </head>
 <body>
-    <!-- Barra de progreso de lectura -->
     <div class="reading-progress-container">
         <div class="reading-progress-bar" id="readingProgressBar"></div>
     </div>
@@ -33,10 +30,10 @@
             <!-- Barra Superior Editorial -->
             <div class="masthead-top">
                 <div>
-                    <span>ARTÍCULO ACADÉMICO</span> | <span>VOL. I • {{ page.date | date: "%Y" }}</span>
+                    ARTICLE / VOL. I • {{ page.date | date: "%Y" }}
                 </div>
                 <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Cambiar tema">
-                    <span id="themeIcon">🌙</span> <span id="themeText">Modo Oscuro</span>
+                    [ <span id="themeText">MODO OSCURO</span> ]
                 </button>
             </div>
 
@@ -50,15 +47,15 @@
 
             <!-- Menú de Navegación -->
             <nav class="nav-menu">
-                <a href="{{ '/' | relative_url }}" class="nav-item">Inicio</a>
-                <a href="{{ '/#posts' | relative_url }}" class="nav-item active">Publicaciones</a>
-                <a href="{{ '/#research' | relative_url }}" class="nav-item">Investigación</a>
-                <a href="{{ '/#about' | relative_url }}" class="nav-item">Acerca de</a>
+                <a href="{{ '/' | relative_url }}" class="nav-item">INICIO</a>
+                <a href="{{ '/#posts' | relative_url }}" class="nav-item active">PUBLICACIONES</a>
+                <a href="{{ '/#research' | relative_url }}" class="nav-item">INVESTIGACIÓN</a>
+                <a href="{{ '/#about' | relative_url }}" class="nav-item">ACERCA DE</a>
             </nav>
 
             <!-- Botón Volver -->
             <a href="{{ '/#posts' | relative_url }}" class="back-link">
-                ← Volver al Archivo de Publicaciones
+                ← VOLVER AL ARCHIVO DE PUBLICACIONES
             </a>
 
             <!-- Artículo Principal -->
@@ -66,28 +63,28 @@
                 <header class="post-detail-header">
                     {% assign cat = page.categories | first %}
                     {% if cat %}
-                    <a href="{{ '/#posts?category=' | relative_url }}{{ cat | url_encode }}" class="category-badge" style="display: inline-block; margin-bottom: 12px; font-size: 0.8rem;">
-                        {{ cat | capitalize }}
+                    <a href="{{ '/#posts?category=' | relative_url }}{{ cat | url_encode }}" class="category-badge" style="display: inline-block; margin-bottom: 16px;">
+                        {{ cat }}
                     </a>
                     {% endif %}
 
                     <h1 class="post-detail-title">{{ page.title }}</h1>
                     
                     <div class="post-detail-meta">
-                        <span>🗓️ {{ page.date | date: "%d de %B, %Y" }}</span>
-                        <span>•</span>
-                        <span>✍️ {{ site.author }}</span>
+                        <span>PUBLICADO: {{ page.date | date: "%d DE %B, %Y" | upcase }}</span>
+                        <span>/</span>
+                        <span>AUTOR: {{ site.author | upcase }}</span>
                         {% assign words = page.content | number_of_words %}
                         {% assign minutes = words | divided_by: 180 %}
                         {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
-                        <span>•</span>
-                        <span>⏱️ ~{{ minutes }} min de lectura</span>
+                        <span>/</span>
+                        <span>LECTURA: ~{{ minutes }} MIN</span>
                     </div>
                 </header>
 
                 {% if page.excerpt and page.excerpt != "" %}
                 <div class="abstract">
-                    <strong>Abstract / Resumen:</strong>
+                    <strong>ABSTRACT / RESUMEN:</strong>
                     {{ page.excerpt | strip_html }}
                 </div>
                 {% endif %}
@@ -96,21 +93,21 @@
                     {{ content }}
                 </div>
 
-                <!-- Etiquetas / Palabras Clave (Compatibilidad con Obsidian tags/keywords) -->
+                <!-- Etiquetas / Palabras Clave -->
                 {% assign all_keywords = page.keywords %}
                 {% if all_keywords == nil or all_keywords.size == 0 %}
                     {% assign all_keywords = page.tags %}
                 {% endif %}
 
                 {% if all_keywords and all_keywords.size > 0 %}
-                <div style="margin-top: 36px; padding-top: 20px; border-top: 1px dashed var(--border-strong);">
-                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">
-                        📌 Palabras Clave / Etiquetas de Investigación:
+                <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-heavy);">
+                    <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.12em;">
+                        ETIQUETAS DE INVESTIGACIÓN:
                     </div>
                     <div class="keywords-container" style="border: none; padding: 0; margin: 0;">
                         {% for kw in all_keywords %}
-                        <a href="{{ '/#posts?tag=' | relative_url }}{{ kw | url_encode }}" class="tag-pill" style="text-decoration: none; font-size: 0.8rem; padding: 4px 10px;">
-                            #{{ kw }}
+                        <a href="{{ '/#posts?tag=' | relative_url }}{{ kw | url_encode }}" class="tag-pill" style="text-decoration: none;">
+                            [ {{ kw }} ]
                         </a>
                         {% endfor %}
                     </div>
@@ -120,13 +117,12 @@
 
             <!-- Pie de Página -->
             <footer class="footer">
-                <p>© {{ site.time | date: '%Y' }} {{ site.author }}. Licenciado bajo <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Creative Commons Attribution 4.0 International</a>.</p>
-                <p style="margin-top: 4px; font-size: 0.72rem; opacity: 0.8;">Alojado en GitHub Pages • Publicado mediante Jekyll</p>
+                <p>© {{ site.time | date: '%Y' }} {{ site.author }} — LICENCIA CREATIVE COMMONS ATTRIBUTION 4.0 INTERNATIONAL.</p>
+                <p style="margin-top: 6px; font-size: 0.68rem; opacity: 0.7;">GITHUB PAGES / JEKYLL STATIC PUBLICATION ENGINE</p>
             </footer>
         </div>
     </div>
 
-    <!-- Scripts de Lectura y Tema -->
     <script>
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
@@ -137,20 +133,12 @@
         }
 
         function updateThemeButtonText(theme) {
-            const icon = document.getElementById('themeIcon');
             const text = document.getElementById('themeText');
-            if (icon && text) {
-                if (theme === 'dark') {
-                    icon.textContent = '☀️';
-                    text.textContent = 'Modo Claro';
-                } else {
-                    icon.textContent = '🌙';
-                    text.textContent = 'Modo Oscuro';
-                }
+            if (text) {
+                text.textContent = theme === 'dark' ? 'MODO CLARO' : 'MODO OSCURO';
             }
         }
 
-        // Progreso de lectura al hacer scroll
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
