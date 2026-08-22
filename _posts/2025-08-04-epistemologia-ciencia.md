@@ -33,12 +33,12 @@ La convergencia disciplinaria plantea interrogantes fundamentales sobre la unida
 - **Economía conductual**: Fusiona economía y psicología
 
 <div class="citation">
-"La epistemología del siglo XXI debe ser tan interdisciplinaria como la ciencia que pretende comprender." (Bascur, 2024)
+"La epistemología del siglo XXI debe ser tan interdisciplinaria como la ciencia que pretende comprender." 
 </div>
 
 ## Hacia una Epistemología Integradora
 
-Propongo un marco epistemológico que reconozca tanto la diversidad metodológica como la unidad subyacente del proyecto científico. Esta aproximación debe equilibrar:
+Se propone un marco epistemológico que reconozca tanto la diversidad metodológica como la unidad subyacente del proyecto científico. Esta aproximación debe equilibrar:
 
 - **Pluralismo metodológico** con **coherencia conceptual**
 - **Especialización disciplinaria** con **síntesis interdisciplinaria**
