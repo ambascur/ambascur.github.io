@@ -80,72 +80,80 @@
                     ← VOLVER AL ARCHIVO DE PUBLICACIONES
                 </a>
 
-                <!-- Artículo Principal -->
-                <article class="post-detail">
-                    <header class="post-detail-header">
-                        {% assign cat = page.categories | first %}
-                        {% if cat %}
-                        <a href="{{ '/#posts?category=' | relative_url }}{{ cat | url_encode }}" class="category-badge" style="display: inline-block; margin-bottom: 16px;">
-                            {{ cat }}
-                        </a>
+                {% assign page_img = page.image %}
+                {% if page_img == nil or page_img == "" %}{% assign page_img = page.cover %}{% endif %}
+
+                <!-- Estructura de Lectura en 2 Columnas estilo Revista de Arte -->
+                <article class="article-reading-container">
+                    <div class="article-editorial-grid {% if page_img == nil or page_img == '' %}no-image{% endif %}">
+                        
+                        {% if page_img and page_img != "" %}
+                        <!-- Columna de la Imagen: Completa, Sin Recortar, Sticky (Fotos 1, 2, 3) -->
+                        <div class="article-image-sidebar">
+                            <div class="article-uncropped-frame">
+                                <img src="{{ page_img | relative_url }}" alt="{{ page.title }}" class="article-uncropped-img">
+                                <div class="article-image-caption">
+                                    <span>FIG 1. ILUSTRACIÓN DE ARCHIVO</span>
+                                    <span>{{ page.date | date: "%Y" }}</span>
+                                </div>
+                            </div>
+                        </div>
                         {% endif %}
 
-                        <h1 class="post-detail-title">{{ page.title }}</h1>
-                        
-                        <div class="post-detail-meta">
-                            <span>PUBLICADO: {{ page.date | date: "%d DE %B, %Y" | upcase }}</span>
-                            <span>/</span>
-                            <span>AUTOR: {{ site.author | upcase }}</span>
-                            {% assign words = page.content | number_of_words %}
-                            {% assign minutes = words | divided_by: 180 %}
-                            {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
-                            <span>/</span>
-                            <span>LECTURA: ~{{ minutes }} MIN</span>
+                        <!-- Columna del Texto de Lectura -->
+                        <div class="article-content-column">
+                            
+                            <div class="article-header-meta">
+                                {% assign cat = page.categories | first %}
+                                {% if cat %}
+                                <a href="{{ '/#posts?category=' | relative_url }}{{ cat | url_encode }}" class="category-badge">
+                                    {{ cat }}
+                                </a>
+                                {% endif %}
+                                <span>FECHA: {{ page.date | date: "%d DE %B, %Y" | upcase }}</span>
+                                {% assign words = page.content | number_of_words %}
+                                {% assign minutes = words | divided_by: 180 %}
+                                {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
+                                <span>/ LECTURA: ~{{ minutes }} MIN</span>
+                            </div>
+
+                            <h1 class="article-header-title">{{ page.title }}</h1>
+
+                            {% if page.excerpt and page.excerpt != "" %}
+                            <div class="article-abstract-box">
+                                <strong>ABSTRACT / RESUMEN:</strong>
+                                {{ page.excerpt | strip_html }}
+                            </div>
+                            {% endif %}
+
+                            <div class="article-body-text">
+                                {{ content }}
+                            </div>
+
+                            <!-- ETIQUETAS -->
+                            {% assign all_keywords = page.keywords %}
+                            {% if all_keywords == nil or all_keywords.size == 0 %}
+                                {% assign all_keywords = page.tags %}
+                            {% endif %}
+
+                            {% if all_keywords and all_keywords.size > 0 %}
+                            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px dashed var(--border-subtle);">
+                                <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.12em;">
+                                    ETIQUETAS DE INVESTIGACIÓN:
+                                </div>
+                                <div class="keywords-container">
+                                    {% for kw in all_keywords %}
+                                    <a href="{{ '/#posts?tag=' | relative_url }}{{ kw | url_encode }}" class="tag-pill" style="text-decoration: none;">
+                                        [ {{ kw }} ]
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endif %}
+
                         </div>
-                    </header>
 
-                    {% assign page_img = page.image %}
-                    {% if page_img == nil or page_img == "" %}{% assign page_img = page.cover %}{% endif %}
-                    {% if page_img and page_img != "" %}
-                    <div class="hero-image-wrapper" style="margin-bottom: 30px;">
-                        <img src="{{ page_img | relative_url }}" alt="{{ page.title }}">
-                        <div class="hero-image-tag">FIGURA DE ARCHIVO • {{ page.title | upcase }}</div>
                     </div>
-                    {% endif %}
-
-                    {% if page.excerpt and page.excerpt != "" %}
-                    <div class="about-bio" style="margin-bottom: 30px;">
-                        <strong style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; display: block; margin-bottom: 8px;">
-                            ABSTRACT / RESUMEN:
-                        </strong>
-                        {{ page.excerpt | strip_html }}
-                    </div>
-                    {% endif %}
-
-                    <div class="post-detail-body">
-                        {{ content }}
-                    </div>
-
-                    <!-- Etiquetas / Palabras Clave -->
-                    {% assign all_keywords = page.keywords %}
-                    {% if all_keywords == nil or all_keywords.size == 0 %}
-                        {% assign all_keywords = page.tags %}
-                    {% endif %}
-
-                    {% if all_keywords and all_keywords.size > 0 %}
-                    <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-heavy);">
-                        <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.12em;">
-                            ETIQUETAS DE INVESTIGACIÓN:
-                        </div>
-                        <div class="keywords-container" style="border: none; padding: 0; margin: 0;">
-                            {% for kw in all_keywords %}
-                            <a href="{{ '/#posts?tag=' | relative_url }}{{ kw | url_encode }}" class="tag-pill" style="text-decoration: none;">
-                                [ {{ kw }} ]
-                            </a>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    {% endif %}
                 </article>
 
                 <!-- Pie de Página -->

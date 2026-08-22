@@ -79,6 +79,24 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* Progress bar de lectura */
+.reading-progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    z-index: 9999;
+}
+
+.reading-progress-bar {
+    height: 100%;
+    background: var(--accent-red);
+    width: 0%;
+    transition: width 0.1s ease;
+}
+
 /* Wrapper Estilo Binder (Carpeta de Anillos Foto 1) */
 .editorial-demo-wrapper {
     background-color: var(--bg-body);
@@ -87,7 +105,7 @@ body {
 }
 
 .binder-container {
-    max-width: 1120px;
+    max-width: 1140px;
     margin: 0 auto;
     background-color: var(--bg-paper);
     border: 2px solid var(--border-heavy);
@@ -135,7 +153,7 @@ body {
 
 @media (max-width: 768px) {
     .binder-inner-page {
-        padding: 24px 20px;
+        padding: 24px 18px;
     }
 }
 
@@ -392,7 +410,7 @@ body {
     position: relative;
     border: 1px solid var(--border-heavy);
     margin-bottom: 20px;
-    background-color: #000;
+    background-color: var(--bg-card);
     overflow: hidden;
 }
 
@@ -764,151 +782,178 @@ body {
     color: var(--text-muted);
 }
 
-/* Sección Investigación y Acerca de (#research & #about) */
-.section-title {
-    font-family: var(--font-head-impact);
-    font-size: 1.6rem;
+/* ==========================================================================
+   ESTILO DE LECTURA DE ARTÍCULOS (INSPIRADO EN LAS 3 REFERENCIAS DEL USUARIO)
+   Imágenes NUNCA recortadas (Aspect ratio natural), maquetación en 2 columnas editorial
+   ========================================================================== */
+
+.article-reading-container {
+    margin-top: 15px;
+}
+
+/* Layout de 2 columnas para lectura: Arte a un lado (sin recortar) y texto al otro */
+.article-editorial-grid {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 45px;
+    align-items: start;
+}
+
+.article-editorial-grid.no-image {
+    grid-template-columns: 1fr;
+}
+
+@media (max-width: 900px) {
+    .article-editorial-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* Columna de la Imagen (Sticky / Pegajosa para acompañar la lectura) */
+.article-image-sidebar {
+    position: sticky;
+    top: 20px;
+}
+
+/* Marco para la imagen SIN RECORTAR (object-fit: contain / natural ratio) */
+.article-uncropped-frame {
+    border: 1px solid var(--border-heavy);
+    background: var(--bg-card);
+    padding: 10px;
+    box-shadow: 6px 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.article-uncropped-img {
+    width: 100%;
+    height: auto; /* Garantiza que la imagen NUNCA se recorte */
+    max-height: 80vh;
+    object-fit: contain; /* Preserva la proporción original completa de la ilustración */
+    display: block;
+}
+
+.article-image-caption {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-bottom: 2px solid var(--border-heavy);
-    padding-bottom: 8px;
-    margin: 30px 0 24px 0;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border-subtle);
     display: flex;
     justify-content: space-between;
+}
+
+/* Columna del Texto de Lectura (Estilo Revista de Arte) */
+.article-content-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.article-header-meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
     align-items: center;
 }
 
-.count-badge {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    border: 1px solid var(--border-heavy);
-    padding: 2px 8px;
-    color: var(--text-muted);
-}
-
-.research-card {
-    display: flex;
-    gap: 20px;
-    background: var(--bg-card);
-    border: 1px solid var(--border-heavy);
-    padding: 24px;
+.article-header-title {
+    font-family: var(--font-head-impact);
+    font-size: 3.2rem;
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
     margin-bottom: 20px;
 }
 
-.research-num {
-    font-family: var(--font-head-impact);
-    font-size: 2.2rem;
-    color: var(--accent-red);
-    line-height: 1;
+@media (max-width: 768px) {
+    .article-header-title {
+        font-size: 2.2rem;
+    }
 }
 
-.research-body h3 {
-    font-family: var(--font-serif-display);
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-}
-
-.research-body p {
-    font-family: var(--font-serif-body);
-    font-size: 1rem;
-    color: var(--text-muted);
-}
-
-.about-bio {
-    font-family: var(--font-serif-body);
-    font-size: 1.1rem;
-    line-height: 1.7;
+.article-abstract-box {
     background: var(--bg-subtle);
-    padding: 28px;
     border-left: 4px solid var(--accent-red);
-    border: 1px solid var(--border-subtle);
-    border-left-width: 4px;
+    padding: 20px 24px;
     margin-bottom: 30px;
+    font-family: var(--font-serif-body);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
 }
 
-.interest-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 12px;
-    margin-bottom: 30px;
-}
-
-.interest-item {
-    background: var(--bg-card);
-    border: 1px solid var(--border-heavy);
-    padding: 12px 16px;
+.article-abstract-box strong {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-}
-
-.contact-card {
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-heavy);
-    padding: 20px;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* Detalle de Artículo (Página Individual / _layouts/post.html) */
-.post-detail-header {
-    margin-bottom: 30px;
-    border-bottom: 1px solid var(--border-subtle);
-    padding-bottom: 20px;
-}
-
-.post-detail-title {
-    font-family: var(--font-head-impact);
-    font-size: 2.8rem;
-    line-height: 1.1;
+    font-size: 0.72rem;
     text-transform: uppercase;
-    margin-bottom: 16px;
+    letter-spacing: 0.12em;
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 6px;
 }
 
-.post-detail-meta {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.post-detail-body {
+/* Cuerpo del Texto con Letra Capitular (Drop Cap) y Formato Editorial */
+.article-body-text {
     font-family: var(--font-serif-body);
     font-size: 1.15rem;
     line-height: 1.8;
     color: var(--text-primary);
-    margin-top: 30px;
 }
 
-.post-detail-body h2 {
+.article-body-text > p:first-of-type::first-letter {
+    font-family: var(--font-head-impact);
+    font-size: 4rem;
+    float: left;
+    line-height: 0.8;
+    padding-right: 12px;
+    padding-top: 4px;
+    color: var(--accent-red);
+}
+
+.article-body-text h2 {
     font-family: var(--font-serif-display);
     font-size: 1.8rem;
     margin: 40px 0 16px 0;
-    border-bottom: 1px solid var(--border-subtle);
+    border-bottom: 2px solid var(--border-heavy);
     padding-bottom: 6px;
 }
 
-.post-detail-body h3 {
+.article-body-text h3 {
     font-family: var(--font-serif-display);
     font-size: 1.4rem;
     margin: 30px 0 14px 0;
 }
 
-.post-detail-body p {
+.article-body-text p {
     margin-bottom: 22px;
+    text-align: justify;
 }
 
-.post-detail-body blockquote, .citation {
+.article-body-text blockquote, .citation {
     background: var(--bg-subtle);
     border-left: 4px solid var(--accent-red);
     padding: 20px 24px;
     font-style: italic;
     margin: 30px 0;
+}
+
+.article-body-text img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 30px auto;
+    border: 1px solid var(--border-heavy);
+    padding: 6px;
+    background: var(--bg-card);
 }
 
 .back-link {
@@ -918,8 +963,10 @@ body {
     color: var(--accent-red);
     text-decoration: underline;
     margin-bottom: 25px;
+    font-weight: 600;
 }
 
+/* Footer */
 .footer {
     margin-top: 50px;
     padding-top: 20px;
