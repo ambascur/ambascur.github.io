@@ -1,3 +1,4 @@
+<!-- ARCHIVO: _layouts/post.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,6 +7,11 @@
     <title>{{ page.title }} — {{ site.title }}</title>
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
     <meta name="author" content="{{ site.author }}">
+
+    <!-- Fuentes de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cinzel:wght@600;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
@@ -25,112 +31,129 @@
         <div class="reading-progress-bar" id="readingProgressBar"></div>
     </div>
 
-    <div class="container">
-        <div class="paper-content">
-            <!-- Barra Superior Editorial -->
-            <div class="masthead-top">
-                <div>
-                    ARTICLE / VOL. I • {{ page.date | date: "%Y" }}
-                </div>
-                <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Cambiar tema">
-                    [ <span id="themeText">MODO OSCURO</span> ]
-                </button>
+    <div class="editorial-demo-wrapper">
+        <div class="binder-container">
+            
+            <!-- Anillos Metálicos en la parte superior -->
+            <div class="binder-rings-strip">
+                <div class="binder-ring-hole"></div>
+                <div class="binder-ring-hole"></div>
+                <div class="binder-ring-hole"></div>
+                <div class="binder-ring-hole"></div>
+                <div class="binder-ring-hole"></div>
+                <div class="binder-ring-hole"></div>
             </div>
 
-            <!-- Cabecera Principal -->
-            <header class="header">
-                <h1 class="blog-title">
-                    <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
-                </h1>
-                <div class="author-info">{{ site.author }}</div>
-            </header>
+            <div class="binder-inner-page">
+                
+                <!-- Barra Superior Editorial -->
+                <div class="masthead-archive-bar">
+                    <div>ARTÍCULO / VOL. I • {{ page.date | date: "%Y" }}</div>
+                    <div>{{ site.author | upcase }}</div>
+                    <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Cambiar tema">
+                        [ <span id="themeText">MODO OSCURO</span> ]
+                    </button>
+                </div>
 
-            <!-- Menú de Navegación -->
-            <nav class="nav-menu">
-                <a href="{{ '/' | relative_url }}" class="nav-item">INICIO</a>
-                <a href="{{ '/#posts' | relative_url }}" class="nav-item active">PUBLICACIONES</a>
-                <a href="{{ '/#research' | relative_url }}" class="nav-item">INVESTIGACIÓN</a>
-                <a href="{{ '/#about' | relative_url }}" class="nav-item">ACERCA DE</a>
-            </nav>
-
-            <!-- Botón Volver -->
-            <a href="{{ '/#posts' | relative_url }}" class="back-link">
-                ← VOLVER AL ARCHIVO DE PUBLICACIONES
-            </a>
-
-            <!-- Artículo Principal -->
-            <article class="post-detail">
-                <header class="post-detail-header">
-                    {% assign cat = page.categories | first %}
-                    {% if cat %}
-                    <a href="{{ '/#posts?category=' | relative_url }}{{ cat | url_encode }}" class="category-badge" style="display: inline-block; margin-bottom: 16px;">
-                        {{ cat }}
-                    </a>
-                    {% endif %}
-
-                    <h1 class="post-detail-title">{{ page.title }}</h1>
-                    
-                    <div class="post-detail-meta">
-                        <span>PUBLICADO: {{ page.date | date: "%d DE %B, %Y" | upcase }}</span>
-                        <span>/</span>
-                        <span>AUTOR: {{ site.author | upcase }}</span>
-                        {% assign words = page.content | number_of_words %}
-                        {% assign minutes = words | divided_by: 180 %}
-                        {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
-                        <span>/</span>
-                        <span>LECTURA: ~{{ minutes }} MIN</span>
+                <!-- Cabecera Principal -->
+                <header class="header-editorial-main">
+                    <div class="mega-editorial-title">
+                        <div class="title-main-text">
+                            <a href="{{ '/' | relative_url }}">TRABAJOS<span class="slash">/</span></a>
+                        </div>
+                        <div class="title-script-text">
+                            Archivo
+                        </div>
                     </div>
                 </header>
 
-                {% assign page_img = page.image %}
-                {% if page_img == nil or page_img == "" %}{% assign page_img = page.cover %}{% endif %}
-                {% if page_img and page_img != "" %}
-                <figure class="editorial-featured-figure">
-                    <img src="{{ page_img | relative_url }}" alt="{{ page.title }}" class="editorial-featured-img">
-                    <figcaption class="editorial-caption">
-                        FIGURA DE ARCHIVO EDITORIAL • {{ page.title | upcase }}
-                    </figcaption>
-                </figure>
-                {% endif %}
+                <!-- Navegación -->
+                <nav class="nav-menu">
+                    <a href="{{ '/' | relative_url }}" class="nav-item">INICIO</a>
+                    <a href="{{ '/#posts' | relative_url }}" class="nav-item active">PUBLICACIONES</a>
+                    <a href="{{ '/#research' | relative_url }}" class="nav-item">INVESTIGACIÓN</a>
+                    <a href="{{ '/#about' | relative_url }}" class="nav-item">ACERCA DE</a>
+                </nav>
 
-                {% if page.excerpt and page.excerpt != "" %}
-                <div class="abstract">
-                    <strong>ABSTRACT / RESUMEN:</strong>
-                    {{ page.excerpt | strip_html }}
-                </div>
-                {% endif %}
+                <!-- Botón Volver -->
+                <a href="{{ '/#posts' | relative_url }}" class="back-link">
+                    ← VOLVER AL ARCHIVO DE PUBLICACIONES
+                </a>
 
-                <div class="post-detail-body">
-                    {{ content }}
-                </div>
-
-                <!-- Etiquetas / Palabras Clave -->
-                {% assign all_keywords = page.keywords %}
-                {% if all_keywords == nil or all_keywords.size == 0 %}
-                    {% assign all_keywords = page.tags %}
-                {% endif %}
-
-                {% if all_keywords and all_keywords.size > 0 %}
-                <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-heavy);">
-                    <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.12em;">
-                        ETIQUETAS DE INVESTIGACIÓN:
-                    </div>
-                    <div class="keywords-container" style="border: none; padding: 0; margin: 0;">
-                        {% for kw in all_keywords %}
-                        <a href="{{ '/#posts?tag=' | relative_url }}{{ kw | url_encode }}" class="tag-pill" style="text-decoration: none;">
-                            [ {{ kw }} ]
+                <!-- Artículo Principal -->
+                <article class="post-detail">
+                    <header class="post-detail-header">
+                        {% assign cat = page.categories | first %}
+                        {% if cat %}
+                        <a href="{{ '/#posts?category=' | relative_url }}{{ cat | url_encode }}" class="category-badge" style="display: inline-block; margin-bottom: 16px;">
+                            {{ cat }}
                         </a>
-                        {% endfor %}
-                    </div>
-                </div>
-                {% endif %}
-            </article>
+                        {% endif %}
 
-            <!-- Pie de Página -->
-            <footer class="footer">
-                <p>© {{ site.time | date: '%Y' }} {{ site.author }} — LICENCIA CREATIVE COMMONS ATTRIBUTION 4.0 INTERNATIONAL.</p>
-                <p style="margin-top: 6px; font-size: 0.68rem; opacity: 0.7;">GITHUB PAGES / JEKYLL STATIC PUBLICATION ENGINE</p>
-            </footer>
+                        <h1 class="post-detail-title">{{ page.title }}</h1>
+                        
+                        <div class="post-detail-meta">
+                            <span>PUBLICADO: {{ page.date | date: "%d DE %B, %Y" | upcase }}</span>
+                            <span>/</span>
+                            <span>AUTOR: {{ site.author | upcase }}</span>
+                            {% assign words = page.content | number_of_words %}
+                            {% assign minutes = words | divided_by: 180 %}
+                            {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
+                            <span>/</span>
+                            <span>LECTURA: ~{{ minutes }} MIN</span>
+                        </div>
+                    </header>
+
+                    {% assign page_img = page.image %}
+                    {% if page_img == nil or page_img == "" %}{% assign page_img = page.cover %}{% endif %}
+                    {% if page_img and page_img != "" %}
+                    <div class="hero-image-wrapper" style="margin-bottom: 30px;">
+                        <img src="{{ page_img | relative_url }}" alt="{{ page.title }}">
+                        <div class="hero-image-tag">FIGURA DE ARCHIVO • {{ page.title | upcase }}</div>
+                    </div>
+                    {% endif %}
+
+                    {% if page.excerpt and page.excerpt != "" %}
+                    <div class="about-bio" style="margin-bottom: 30px;">
+                        <strong style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; display: block; margin-bottom: 8px;">
+                            ABSTRACT / RESUMEN:
+                        </strong>
+                        {{ page.excerpt | strip_html }}
+                    </div>
+                    {% endif %}
+
+                    <div class="post-detail-body">
+                        {{ content }}
+                    </div>
+
+                    <!-- Etiquetas / Palabras Clave -->
+                    {% assign all_keywords = page.keywords %}
+                    {% if all_keywords == nil or all_keywords.size == 0 %}
+                        {% assign all_keywords = page.tags %}
+                    {% endif %}
+
+                    {% if all_keywords and all_keywords.size > 0 %}
+                    <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-heavy);">
+                        <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.12em;">
+                            ETIQUETAS DE INVESTIGACIÓN:
+                        </div>
+                        <div class="keywords-container" style="border: none; padding: 0; margin: 0;">
+                            {% for kw in all_keywords %}
+                            <a href="{{ '/#posts?tag=' | relative_url }}{{ kw | url_encode }}" class="tag-pill" style="text-decoration: none;">
+                                [ {{ kw }} ]
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </article>
+
+                <!-- Pie de Página -->
+                <footer class="footer">
+                    <p>© {{ site.time | date: '%Y' }} {{ site.author }} — LICENCIA CREATIVE COMMONS ATTRIBUTION 4.0 INTERNATIONAL.</p>
+                    <p style="margin-top: 6px; font-size: 0.68rem; opacity: 0.7;">GITHUB PAGES / JEKYLL STATIC PUBLICATION ENGINE</p>
+                </footer>
+            </div>
         </div>
     </div>
 

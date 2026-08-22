@@ -2,102 +2,115 @@
 layout: default
 ---
 
-<!-- SECCIÓN INICIO (#home) -->
+<!-- SECCIÓN INICIO (#home) ESTILO REVISTA / MAGAZINE -->
 <div id="home" class="section active">
-    <!-- Titular Editorial Principal estilo AWARE -->
-    <h2 class="editorial-hero-heading">
-        REFLEXIONES, INVESTIGACIÓN Y CRÍTICA: PERSPECTIVAS EN FILOSOFÍA Y METODOLOGÍA
-    </h2>
 
-    <!-- Fotografía Editorial de Archivo -->
-    <figure class="editorial-featured-figure">
-        <img src="{{ '/assets/images/hero_editorial.png' | relative_url }}" alt="Fotografía de archivo editorial" class="editorial-featured-img">
-        <figcaption class="editorial-caption">
-            FOTOGRAFÍA DE ARCHIVO • SALÓN DE INVESTIGACIÓN ACADÉMICA Y DISCUSIÓN CONCEPTUAL (SMITH COLLEGE SPECIAL COLLECTIONS, 1975)
-        </figcaption>
-    </figure>
-
-    <!-- Abstract Principal del Blog -->
-    <div class="abstract">
-        <strong>ABSTRACT / DECLARACIÓN EDITORIAL:</strong>
-        Este espacio académico presenta reflexiones, análisis y discusiones sobre temas contemporáneos en matemáticas, ciencias, filosofía, metodología de investigación y cultura digital. Como estudiante autodidacta, el objetivo principal es cultivar un aprendizaje riguroso y abierto al diálogo crítico, compartiendo perspectivas sobre fenómenos complejos y fomentando el intercambio conceptual.
-    </div>
-
-    <!-- Sección de Últimas Publicaciones -->
-    <div class="section-title">
-        <span>ÚLTIMAS PUBLICACIONES</span>
-        <span class="count-badge">RECIENTES</span>
-    </div>
-    
-    {% if site.posts.size > 0 %}
-        {% for post in site.posts limit:3 %}
-        <article class="post-card">
-            <div class="post-card-grid">
-                <div>
-                    <div class="post-header">
-                        <h3 class="post-title">
-                            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                        </h3>
-                        {% assign cat = post.categories | first %}
-                        {% if cat %}
-                        <span class="category-badge" onclick="filterArchiveFromHome('category', '{{ cat }}')">
-                            {{ cat }}
-                        </span>
-                        {% endif %}
-                    </div>
-                    
-                    <div class="post-meta">
-                        <span>FECHA: {{ post.date | date: "%d DE %B, %Y" | upcase }}</span>
-                        {% assign words = post.content | number_of_words %}
-                        {% assign minutes = words | divided_by: 180 %}
-                        {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
-                        <span>/ LECTURA: ~{{ minutes }} MIN</span>
-                    </div>
-                    
-                    <div class="post-excerpt">
-                        {{ post.excerpt | strip_html | truncatewords: 30 }}
-                    </div>
-                    
-                    <a href="{{ post.url | relative_url }}" class="read-more-link">
-                        LEER ARTÍCULO COMPLETO →
+    <!-- Grilla Principal Asimétrica estilo Revista (Fotos 1, 2, 3) -->
+    <div class="magazine-grid">
+        
+        <!-- Columna Izquierda: Índice de Trabajos Seleccionados (Foto 1) -->
+        <div class="index-column">
+            <h3 class="index-column-title">TRABAJOS SELECCIONADOS</h3>
+            {% if site.posts.size > 0 %}
+            <ul class="archive-list">
+                {% for post in site.posts %}
+                <li class="archive-item">
+                    <a href="{{ post.url | relative_url }}">
+                        {{ post.title }}
+                        <span class="date-badge">[ '{{ post.date | date: "%y" }} ]</span>
                     </a>
-                    
-                    {% assign post_tags = post.keywords %}
-                    {% if post_tags == nil or post_tags.size == 0 %}
-                        {% assign post_tags = post.tags %}
-                    {% endif %}
-
-                    {% if post_tags and post_tags.size > 0 %}
-                    <div class="keywords-container">
-                        {% for tag in post_tags %}
-                        <span class="tag-pill" onclick="filterArchiveFromHome('tag', '{{ tag }}')">
-                            [ {{ tag }} ]
-                        </span>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                </div>
-
-                {% assign post_img = post.image %}
-                {% if post_img == nil or post_img == "" %}{% assign post_img = post.cover %}{% endif %}
-                {% if post_img and post_img != "" %}
-                <div class="post-thumbnail-frame">
-                    <img src="{{ post_img | relative_url }}" alt="{{ post.title }}" class="post-thumbnail-img">
-                </div>
-                {% endif %}
-            </div>
-        </article>
-        {% endfor %}
-    {% else %}
-        <div class="abstract" style="border-left-color: var(--text-muted);">
-            No hay publicaciones registradas. Agrega archivos Markdown en la carpeta <code>_posts/</code>.
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">No hay publicaciones.</p>
+            {% endif %}
         </div>
-    {% endif %}
 
-    <!-- Cita Destacada de Inicio -->
-    <div class="citation-box" style="margin-top: 36px;">
-        "La verdadera investigación no busca la mera acumulación de certezas, sino la continua refinación de nuestras preguntas más fundamentales." (Bascur, 2025)
+        <!-- Columna Central: Post Destacado con Resaltado SVG (Foto 2) -->
+        <div class="hero-post-card">
+            {% assign hero_post = site.posts | first %}
+            {% if hero_post %}
+                {% assign post_img = hero_post.image %}
+                {% if post_img == nil or post_img == "" %}{% assign post_img = hero_post.cover %}{% endif %}
+                
+                <div class="hero-image-wrapper">
+                    {% if post_img and post_img != "" %}
+                    <img src="{{ post_img | relative_url }}" alt="{{ hero_post.title }}">
+                    {% else %}
+                    <img src="{{ '/assets/images/hero_editorial.png' | relative_url }}" alt="Fotografía de archivo editorial">
+                    {% endif %}
+                    <div class="hero-image-tag">INVESTIGACIÓN DESTACADA</div>
+                </div>
+
+                {% assign title_words = hero_post.title | split: " " %}
+                {% assign first_word = title_words | first %}
+                {% assign remaining_title = hero_post.title | remove_first: first_word %}
+
+                <h2 class="hero-post-title">
+                    <span class="circled-text-container">
+                        <!-- SVG Óvalo estilo rotulado/circulado a mano (Foto 2) -->
+                        <svg viewBox="0 0 200 60" preserveAspectRatio="none">
+                            <path d="M 10,30 C 15,5 180,2 190,28 C 200,54 25,58 8,35 C 2,20 160,8 185,25" fill="none" stroke="var(--accent-red)" stroke-width="2.5" stroke-dasharray="300" stroke-dashoffset="0"></path>
+                        </svg>
+                        {{ first_word }}
+                    </span>
+                    {{ remaining_title }}
+                </h2>
+
+                <p class="hero-post-excerpt">
+                    {{ hero_post.excerpt | strip_html | truncatewords: 35 }}
+                </p>
+
+                <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600;">
+                    <a href="{{ hero_post.url | relative_url }}" class="read-more-link">
+                        LEER INVESTIGACIÓN COMPLETA ↗
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Columna Derecha: Tarjetas Inclinadas y Collage (Fotos 2 y 3) -->
+        <div class="collage-column">
+            
+            <!-- Tarjeta Roja Rotada (Foto 1 & 2) -->
+            <div class="rotated-card rotated-card-red">
+                <div class="card-title">DECLARACIÓN / {{ site.time | date: "%Y" }}</div>
+                <div class="card-body">
+                    Espacio de investigación independiente enfocado en epistemología, filosofía de las matemáticas, ciencias sociales y cultura digital.
+                </div>
+            </div>
+
+            <!-- Tarjeta Blanca estilo Nota (Foto 3) -->
+            <div class="rotated-card">
+                <div class="card-title">AUTORA</div>
+                <div class="card-body">
+                    <strong>{{ site.author }}</strong><br>
+                    Investigación libre y análisis de sistemas complejos.
+                </div>
+                <div class="big-script-quote">
+                    Presencia
+                </div>
+            </div>
+
+        </div>
+
     </div>
+
+    <!-- Sección Inferior Estilo Prensa (Foto 1 abajo) -->
+    <div class="bottom-press-section">
+        <div>
+            <h3 class="press-headline">
+                HACIA UNA PERCEPCIÓN DEL CONOCIMIENTO MÁS CLARA & <span class="red-text">ESTRUCTURADA</span>
+            </h3>
+        </div>
+        <div>
+            <div class="press-body">
+                A través de cada proyecto e investigación, analizamos la forma en que se estructuran los conceptos y el conocimiento. El objetivo no es solo presentar información, sino construir una jerarquía visual clara que capte la atención y fomente la reflexión crítica sin distracciones.
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- SECCIÓN ARCHIVO DE PUBLICACIONES (#posts) -->
@@ -120,7 +133,6 @@ layout: default
             <button class="filter-pill active" data-cat="todas" onclick="selectCategoryFilter('todas', this)">
                 [ TODAS ({{ site.posts.size }}) ]
             </button>
-            <!-- Generado dinámicamente en JS -->
         </div>
 
         <!-- Filtro por Etiquetas / Palabras Clave -->
@@ -249,7 +261,7 @@ layout: default
     </div>
 
     <div class="about-bio">
-        Soy <strong>Andrea Bascur</strong>, estudiante universitaria entusiasta de las humanidades, literatura, tecnología y filosofía aplicada. Desde muy joven participo en actividades relacionadas con la electrónica y la informática, manteniendo un profundo interés por las ciencias sociales y las preguntas fundamentales que desafían certezas preestablecidas.
+        Soy <strong>{{ site.author }}</strong>, estudiante universitaria entusiasta de las humanidades, literatura, tecnología y filosofía aplicada. Desde muy joven participo en actividades relacionadas con la electrónica y la informática, manteniendo un profundo interés por las ciencias sociales y las preguntas fundamentales que desafían certezas preestablecidas.
         <br><br>
         Este blog funciona como un laboratorio personal de aprendizaje libre: un espacio abierto para dialogar, equivocarse, cuestionar y construir conocimiento integrador sin dogmatismos.
     </div>
@@ -336,56 +348,54 @@ layout: default
         });
 
         const catContainer = document.getElementById('categoriesPillsRow');
-        catMap.forEach((data, normKey) => {
-            const btn = document.createElement('button');
-            btn.className = 'filter-pill';
-            btn.setAttribute('data-cat', normKey);
-            btn.innerHTML = `[ ${data.name.toUpperCase()} (${data.count}) ]`;
-            btn.onclick = () => selectCategoryFilter(normKey, btn);
-            catContainer.appendChild(btn);
-        });
+        if (catContainer) {
+            catMap.forEach((data, normKey) => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-pill';
+                btn.setAttribute('data-cat', normKey);
+                btn.innerHTML = `[ ${data.name.toUpperCase()} (${data.count}) ]`;
+                btn.onclick = () => selectCategoryFilter(normKey, btn);
+                catContainer.appendChild(btn);
+            });
+        }
 
         const tagContainer = document.getElementById('tagsPillsRow');
-        tagMap.forEach((data, normKey) => {
-            const btn = document.createElement('button');
-            btn.className = 'filter-pill';
-            btn.setAttribute('data-tag', normKey);
-            btn.innerHTML = `[ ${data.name.toUpperCase()} (${data.count}) ]`;
-            btn.onclick = () => selectTagFilter(normKey, btn);
-            tagContainer.appendChild(btn);
-        });
+        if (tagContainer) {
+            tagMap.forEach((data, normKey) => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-pill';
+                btn.setAttribute('data-tag', normKey);
+                btn.innerHTML = `[ ${data.name.toUpperCase()} (${data.count}) ]`;
+                btn.onclick = () => selectTagFilter(normKey, btn);
+                tagContainer.appendChild(btn);
+            });
+        }
     }
 
-    function selectCategoryFilter(catNormKey, btnElement) {
-        const norm = normalizeStr(catNormKey);
-        activeCategory = norm;
-
-        const catButtons = document.querySelectorAll('#categoriesPillsRow .filter-pill');
-        catButtons.forEach(btn => {
-            const btnCat = btn.getAttribute('data-cat');
-            if (btnCat === norm || (norm === '' && btnCat === 'todas')) {
+    function selectCategoryFilter(catNormKey, targetBtn) {
+        activeCategory = catNormKey;
+        activeTag = null;
+        
+        document.querySelectorAll('#categoriesPillsRow .filter-pill').forEach(btn => {
+            if (btn.getAttribute('data-cat') === catNormKey) {
                 btn.classList.add('active');
             } else {
                 btn.classList.remove('active');
             }
         });
 
+        document.querySelectorAll('#tagsPillsRow .filter-pill').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
         filterPosts();
     }
 
-    function selectTagFilter(tagNormKey, btnElement) {
-        const norm = normalizeStr(tagNormKey);
+    function selectTagFilter(tagNormKey, targetBtn) {
+        activeTag = tagNormKey;
         
-        if (activeTag === norm) {
-            activeTag = null;
-        } else {
-            activeTag = norm;
-        }
-
-        const tagButtons = document.querySelectorAll('#tagsPillsRow .filter-pill');
-        tagButtons.forEach(btn => {
-            const btnTag = btn.getAttribute('data-tag');
-            if (activeTag && btnTag === activeTag) {
+        document.querySelectorAll('#tagsPillsRow .filter-pill').forEach(btn => {
+            if (btn.getAttribute('data-tag') === tagNormKey) {
                 btn.classList.add('active');
             } else {
                 btn.classList.remove('active');
@@ -400,58 +410,6 @@ layout: default
         filterPosts();
     }
 
-    function filterPosts() {
-        const posts = document.querySelectorAll('.archive-post-card');
-        let visibleCount = 0;
-
-        posts.forEach(post => {
-            const postCatsNorm = (post.getAttribute('data-categories') || '').split(',').map(normalizeStr);
-            const postTagsNorm = (post.getAttribute('data-tags') || '').split(',').map(normalizeStr);
-            const postSearchNorm = post.getAttribute('data-search') || '';
-
-            let matchCat = (activeCategory === 'todas' || activeCategory === '');
-            if (!matchCat) {
-                matchCat = postCatsNorm.includes(activeCategory);
-            }
-
-            let matchTag = true;
-            if (activeTag) {
-                matchTag = postTagsNorm.includes(activeTag);
-            }
-
-            let matchSearch = true;
-            if (searchQuery !== '') {
-                matchSearch = postSearchNorm.includes(searchQuery);
-            }
-
-            if (matchCat && matchTag && matchSearch) {
-                post.style.display = 'block';
-                visibleCount++;
-            } else {
-                post.style.display = 'none';
-            }
-        });
-
-        const badge = document.getElementById('postCountBadge');
-        if (badge) {
-            badge.textContent = `MOSTRANDO ${visibleCount} DE ${posts.length}`;
-        }
-
-        const noResults = document.getElementById('noResultsMsg');
-        if (noResults) {
-            noResults.style.display = (visibleCount === 0) ? 'block' : 'none';
-        }
-    }
-
-    function filterArchiveFromHome(type, value) {
-        showSection('posts', null);
-        if (type === 'category') {
-            selectCategoryFilter(value);
-        } else if (type === 'tag') {
-            selectTagFilter(value);
-        }
-    }
-
     function resetArchiveFilters() {
         activeCategory = 'todas';
         activeTag = null;
@@ -460,17 +418,62 @@ layout: default
         const input = document.getElementById('archiveSearchInput');
         if (input) input.value = '';
 
-        selectCategoryFilter('todas');
-        selectTagFilter(null);
+        document.querySelectorAll('#categoriesPillsRow .filter-pill').forEach(btn => {
+            if (btn.getAttribute('data-cat') === 'todas') btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+
+        document.querySelectorAll('#tagsPillsRow .filter-pill').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        filterPosts();
+    }
+
+    function filterPosts() {
+        const posts = document.querySelectorAll('.archive-post-card');
+        let visibleCount = 0;
+
+        posts.forEach(post => {
+            const postCats = normalizeStr(post.getAttribute('data-categories'));
+            const postTags = normalizeStr(post.getAttribute('data-tags'));
+            const postSearchText = normalizeStr(post.getAttribute('data-search'));
+
+            let matchesCat = (activeCategory === 'todas') || postCats.includes(activeCategory);
+            let matchesTag = (!activeTag) || postTags.includes(activeTag);
+            let matchesSearch = (!searchQuery) || postSearchText.includes(searchQuery);
+
+            if (matchesCat && matchesTag && matchesSearch) {
+                post.style.display = 'block';
+                visibleCount++;
+            } else {
+                post.style.display = 'none';
+            }
+        });
+
+        const badge = document.getElementById('postCountBadge');
+        if (badge) badge.textContent = `${visibleCount} PUBLICACIONES`;
+
+        const noResults = document.getElementById('noResultsMsg');
+        if (noResults) {
+            noResults.style.display = (visibleCount === 0) ? 'block' : 'none';
+        }
+    }
+
+    function filterArchiveFromHome(type, val) {
+        showSection('posts', null);
+        setTimeout(() => {
+            if (type === 'category') {
+                selectCategoryFilter(normalizeStr(val));
+            } else if (type === 'tag') {
+                selectTagFilter(normalizeStr(val));
+            }
+        }, 50);
     }
 
     window.applyArchiveFilterFromUrl = function(params) {
-        if (params.category) {
-            selectCategoryFilter(params.category);
-        }
-        if (params.tag) {
-            selectTagFilter(params.tag);
-        }
+        if (params.category) selectCategoryFilter(normalizeStr(params.category));
+        if (params.tag) selectTagFilter(normalizeStr(params.tag));
         if (params.search) {
             const input = document.getElementById('archiveSearchInput');
             if (input) input.value = params.search;

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de Diseño Editorial / Revista — Reflexiones Académicas</title>
+    
+    <!-- Fuentes de Google Fonts para la estética de revista/binder -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cinzel:wght@600;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Hoja de estilos del diseño editorial -->
+    <link rel="stylesheet" href="assets/css/editorial-demo.css">
+</head>
+<body>
+
+<div class="editorial-demo-wrapper">
+
+    <!-- Barra de control superior para volver -->
+    <div class="demo-control-bar">
+        <span>MODO DEMOSTRACIÓN EDITORIAL & ARCHIVADOR</span>
+        <a href="index.html">[ ← VOLVER AL BLOG PRINCIPAL ]</a>
+    </div>
+
+    <!-- Contenedor Estilo Carpeta / Binder (Foto 1) -->
+    <div class="binder-container">
+        
+        <!-- Tira de anillos de metal -->
+        <div class="binder-rings-strip">
+            <div class="binder-ring-hole"></div>
+            <div class="binder-ring-hole"></div>
+            <div class="binder-ring-hole"></div>
+            <div class="binder-ring-hole"></div>
+            <div class="binder-ring-hole"></div>
+            <div class="binder-ring-hole"></div>
+        </div>
+
+        <div class="binder-inner-page">
+            
+            <!-- Barra de cabecera de archivo -->
+            <div class="masthead-archive-bar">
+                <div>ESTUDIOS DE CASO / DESDE 2025</div>
+                <div>VOL. I • 2026 / PUBLICACIONES ACADÉMICAS</div>
+                <div class="tag-red">INVESTIGACIÓN & ENSAYOS</div>
+            </div>
+
+            <!-- Título Principal Mega Editorial (TRABAJOS / Archivo) -->
+            <div class="mega-editorial-title">
+                <div class="title-main-text">
+                    TRABAJOS<span class="slash">/</span>
+                </div>
+                <div class="title-script-text">
+                    Archivo
+                </div>
+            </div>
+
+            <!-- Línea de Categorías / Filtros -->
+            <div class="nav-tags-line">
+                <span class="active">TODOS</span>
+                <span>/ FILOSOFÍA</span>
+                <span>/ EPISTEMOLOGÍA</span>
+                <span>/ METODOLOGÍA</span>
+                <span>/ ENSAYOS</span>
+            </div>
+
+            <!-- Marquesina en movimiento (Foto 4) -->
+            <div class="editorial-marquee">
+                <div class="marquee-content">
+                    ★ REFLEXIONES ACADÉMICAS ★ ANDREA BASCUR ★ FILOSOFÍA & METODOLOGÍA DE LA CIENCIA ★ PERSPECTIVAS CRÍTICAS ★ VOL. I 2026 ★ REFLEXIONES ACADÉMICAS ★ ANDREA BASCUR ★ FILOSOFÍA & METODOLOGÍA DE LA CIENCIA ★ PERSPECTIVAS CRÍTICAS ★
+                </div>
+            </div>
+
+            <!-- Grilla Principal Asimétrica estilo Revista (Fotos 1, 2, 3) -->
+            <div class="magazine-grid">
+                
+                <!-- Columna Izquierda: Índice de Artículos (Foto 1 izquierda) -->
+                <div class="index-column">
+                    <h3 class="index-column-title">TRABAJOS SELECCIONADOS</h3>
+                    <ul class="archive-list">
+                        <li class="archive-item">
+                            <a href="#">
+                                Epistemología de la Ciencia
+                                <span class="date-badge">[ '25 ]</span>
+                            </a>
+                        </li>
+                        <li class="archive-item">
+                            <a href="#">
+                                Contrato Social: Resumen
+                                <span class="date-badge">[ '25 ]</span>
+                            </a>
+                        </li>
+                        <li class="archive-item">
+                            <a href="#">
+                                Metodología Mixta
+                                <span class="date-badge">[ '25 ]</span>
+                            </a>
+                        </li>
+                        <li class="archive-item">
+                            <a href="#">
+                                Números Primos & Filosofía
+                                <span class="date-badge">[ '25 ]</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Columna Central: Post Destacado con Resaltado SVG (Foto 2) -->
+                <div class="hero-post-card">
+                    <div class="hero-image-wrapper">
+                        <img src="assets/images/epistemologia.png" alt="Epistemología de la Ciencia" onerror="this.src='assets/images/hero_editorial.png'">
+                        <div class="hero-image-tag">INVESTIGACIÓN DESTACADA</div>
+                    </div>
+
+                    <h2 class="hero-post-title">
+                        <span class="circled-text-container">
+                            <!-- SVG Óvalo estilo rotulado/circulado a mano (Foto 2) -->
+                            <svg viewBox="0 0 200 60" preserveAspectRatio="none">
+                                <path d="M 10,30 C 15,5 180,2 190,28 C 200,54 25,58 8,35 C 2,20 160,8 185,25" fill="none" stroke="var(--demo-accent-red)" stroke-width="2.5" stroke-dasharray="300" stroke-dashoffset="0"></path>
+                            </svg>
+                            EPISTEMOLOGÍA
+                        </span>
+                        DE LA CIENCIA
+                    </h2>
+
+                    <p class="hero-post-excerpt">
+                        La epistemología científica enfrenta nuevos desafíos en un contexto de interdisciplinariedad creciente. Las fronteras entre disciplinas se difuminan, requiriendo marcos conceptuales más flexibles y adaptativos.
+                    </p>
+
+                    <div style="font-family: var(--font-mono-archive); font-size: 0.8rem; font-weight: 600;">
+                        <a href="#" style="color: var(--demo-accent-red); text-decoration: underline;">
+                            LEER INVESTIGACIÓN COMPLETA ↗
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Tarjetas Inclinadas y Collage (Fotos 2 y 3) -->
+                <div class="collage-column">
+                    
+                    <!-- Tarjeta Roja Rotada (Foto 1 & 2) -->
+                    <div class="rotated-card rotated-card-red">
+                        <div class="card-title">DECLARACIÓN / 2026</div>
+                        <div class="card-body">
+                            Espacio de investigación independiente enfocado en epistemología, filosofía de las matemáticas y tecnología digital.
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta Blanca estilo Nota (Foto 3) -->
+                    <div class="rotated-card">
+                        <div class="card-title">AUTORA</div>
+                        <div class="card-body">
+                            <strong>Andrea Bascur</strong><br>
+                            Investigación autodidacta y análisis de sistemas complejos.
+                        </div>
+                        <div class="big-script-quote">
+                            Presencia
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Sección Inferior Estilo Prensa (Foto 1 abajo) -->
+            <div class="bottom-press-section">
+                <div>
+                    <h3 class="press-headline">
+                        HACIA UNA PERCEPCIÓN DEL CONOCIMIENTO MÁS CLARA & <span class="red-text">ESTRUCTURADA</span>
+                    </h3>
+                </div>
+                <div>
+                    <div class="press-body">
+                        A través de cada proyecto e investigación, analizamos la forma en que se estructuran los conceptos y el conocimiento. El objetivo no es solo presentar información, sino construir una jerarquía visual clara que capte la atención y fomente la reflexión crítica sin distracciones.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

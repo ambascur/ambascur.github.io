@@ -8,6 +8,11 @@
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
     <meta name="author" content="{{ site.author }}">
 
+    <!-- Fuentes de Google Fonts para la estética editorial / revista -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cinzel:wght@600;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
     <script>
@@ -22,49 +27,73 @@
     </script>
 </head>
 <body>
-    <div class="container">
-        <div class="paper-content">
-            <!-- Barra Superior Editorial -->
-            <div class="masthead-top">
-                <div>
-                    VOL. I • {{ site.time | date: "%Y" }} / ACADEMIC RESEARCH & PAPERS
-                </div>
-                <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Cambiar tema">
-                    [ <span id="themeText">MODO OSCURO</span> ]
-                </button>
+
+    <div class="editorial-demo-wrapper">
+        <!-- Contenedor Principal Estilo Carpeta / Binder (Foto 1) -->
+        <div class="binder-container">
+            
+            <!-- Tira de anillos de metal en la parte superior -->
+            <div class="binder-rings-strip">
+                <div class="binder-ring-hole"></div>
+                <div class="binder-ring-hole"></div>
+                <div class="binder-ring-hole"></div>
+                <div class="binder-ring-hole"></div>
+                <div class="binder-ring-hole"></div>
+                <div class="binder-ring-hole"></div>
             </div>
 
-            <!-- Cabecera Principal -->
-            <header class="header">
-                <h1 class="blog-title">
-                    <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
-                </h1>
-                <div class="author-info">{{ site.author }}</div>
-                <div class="affiliation">
-                    <span>Investigación Independiente</span>
-                    <span>Filosofía & Humanidades</span>
-                    <span>Tecnología & Epistemología</span>
+            <div class="binder-inner-page">
+                
+                <!-- Barra Superior de Archivo y Conmutador de Modo Oscuro -->
+                <div class="masthead-archive-bar">
+                    <div>ESTUDIOS DE CASO / DESDE 2025</div>
+                    <div>VOL. I • {{ site.time | date: "%Y" }} / {{ site.author | upcase }}</div>
+                    <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Cambiar tema">
+                        [ <span id="themeText">MODO OSCURO</span> ]
+                    </button>
                 </div>
-            </header>
 
-            <!-- Menú de Navegación -->
-            <nav class="nav-menu">
-                <a href="#home" class="nav-item active" onclick="showSection('home', event)">INICIO</a>
-                <a href="#posts" class="nav-item" onclick="showSection('posts', event)">PUBLICACIONES</a>
-                <a href="#research" class="nav-item" onclick="showSection('research', event)">INVESTIGACIÓN</a>
-                <a href="#about" class="nav-item" onclick="showSection('about', event)">ACERCA DE</a>
-            </nav>
+                <!-- Cabecera Principal con Título Monumental Mixto -->
+                <header class="header-editorial-main">
+                    <div class="mega-editorial-title">
+                        <div class="title-main-text">
+                            <a href="{{ '/' | relative_url }}">TRABAJOS<span class="slash">/</span></a>
+                        </div>
+                        <div class="title-script-text">
+                            Archivo
+                        </div>
+                    </div>
+                    <div class="author-subline">
+                        {{ site.title | upcase }} — POR {{ site.author | upcase }}
+                    </div>
+                </header>
 
-            <!-- Contenido dinámico -->
-            <main>
-                {{ content }}
-            </main>
+                <!-- Menú de Navegación Editorial -->
+                <nav class="nav-menu">
+                    <a href="#home" class="nav-item active" onclick="showSection('home', event)">INICIO</a>
+                    <a href="#posts" class="nav-item" onclick="showSection('posts', event)">PUBLICACIONES</a>
+                    <a href="#research" class="nav-item" onclick="showSection('research', event)">INVESTIGACIÓN</a>
+                    <a href="#about" class="nav-item" onclick="showSection('about', event)">ACERCA DE</a>
+                </nav>
 
-            <!-- Pie de Página -->
-            <footer class="footer">
-                <p>© {{ site.time | date: '%Y' }} {{ site.author }} — LICENCIA CREATIVE COMMONS ATTRIBUTION 4.0 INTERNATIONAL.</p>
-                <p style="margin-top: 6px; font-size: 0.68rem; opacity: 0.7;">GITHUB PAGES / JEKYLL STATIC PUBLICATION ENGINE</p>
-            </footer>
+                <!-- Marquesina Deslizante estilo Revista (Foto 4) -->
+                <div class="editorial-marquee">
+                    <div class="marquee-content">
+                        ★ REFLEXIONES ACADÉMICAS ★ ANDREA BASCUR ★ FILOSOFÍA & METODOLOGÍA DE LA CIENCIA ★ PERSPECTIVAS CRÍTICAS ★ VOL. I {{ site.time | date: "%Y" }} ★ REFLEXIONES ACADÉMICAS ★ ANDREA BASCUR ★ FILOSOFÍA & METODOLOGÍA DE LA CIENCIA ★
+                    </div>
+                </div>
+
+                <!-- Contenido Dinámico de Páginas / Secciones -->
+                <main>
+                    {{ content }}
+                </main>
+
+                <!-- Pie de Página Estilo Imprenta -->
+                <footer class="footer">
+                    <p>© {{ site.time | date: '%Y' }} {{ site.author }} — LICENCIA CREATIVE COMMONS ATTRIBUTION 4.0 INTERNATIONAL.</p>
+                    <p style="margin-top: 6px; font-size: 0.68rem; opacity: 0.7;">GITHUB PAGES / JEKYLL STATIC PUBLICATION ENGINE</p>
+                </footer>
+            </div>
         </div>
     </div>
 
