@@ -1,10 +1,12 @@
 ---
 layout: post
-title: "Contrato social: Resumen "
-date: 2025-08-04
-categories: [Filosofía]
-keywords: [John Locke, Filosofía, Rousseau]
-excerpt: " El contrato social es un concepto clave dentro de la filosofía política."
+title: Esto es una prueba
+date: 2026-08-22
+categories:
+  - Filosofía
+keywords:
+  - Filosofía
+excerpt: prueba prueba prueba
 ---
 ## Abstract (Resumen)
 El contrato social es un concepto clave dentro de la filosofía política. Comprender cómo funcionan nuestras sociedades de la mano de controvertidas personalidades como JJ. Rousseau, J. Locke, T. Hobbes, nos permitirá responder el siguiente planteamiento. ¿Cómo es que presidentes contemporáneos ejercen los mismos niveles de poder que los antiguos guerreros? 
