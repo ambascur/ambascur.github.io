@@ -16,7 +16,7 @@ La integración de métodos cuantitativos y cualitativos ha emergido como una **
 
 ## Introducción
 
-La investigación social enfrenta desafíos metodológicos únicos que requieren aproximaciones innovadoras. La metodología mixta ofrece un marco integrador que trasciende las limitaciones inherentes a enfoques puramente cuantitativos o cualitativos.
+La investigación social enfrenta desafíos  únicos que requieren aproximaciones innovadoras. La metodología mixta y el trabajo de pares, como un mosaico de voces que generan nuevos conocimientos, ofrecen un marco integrador que trasciende las limitaciones inherentes a enfoques puramente cuantitativos o cualitativos.
 
 ### Ventajas de la Metodología Mixta
 
@@ -29,7 +29,7 @@ La investigación social enfrenta desafíos metodológicos únicos que requieren
 La metodología mixta se fundamenta en el pragmatismo epistemológico, que prioriza la utilidad práctica sobre consideraciones paradigmáticas rígidas.
 
 <div class="citation">
-"La investigación social debe mantener un equilibrio constante entre rigor metodológico y sensibilidad hacia los contextos específicos de estudio." (Bascur, 2024)
+"La investigación social debe mantener un equilibrio constante entre rigor metodológico y sensibilidad hacia los contextos específicos de estudio." 
 </div>
 
 ## Conclusiones
