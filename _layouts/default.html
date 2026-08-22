@@ -4,410 +4,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="author" content="{{ site.author }}">
 
-        body {
-            font-family: 'Times New Roman', serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-            padding: 20px;
-        }
+    <!-- Enlace a la hoja de estilos unificada -->
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
-        .container {
-            max-width: 210mm;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            min-height: 297mm;
-        }
-
-        .paper-content {
-            padding: 25.4mm;
-            padding-top: 20mm;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 2px solid #333;
-            padding-bottom: 20px;
-        }
-
-        .blog-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .author-info {
-            font-size: 14px;
-            font-style: italic;
-            margin-bottom: 5px;
-        }
-
-        .affiliation {
-            font-size: 12px;
-            color: #666;
-        }
-
-        .nav-menu {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 20px 0;
-            font-size: 14px;
-        }
-
-        .nav-item {
-            cursor: pointer;
-            padding: 5px 10px;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s ease;
-            text-decoration: none;
-            color: #333;
-        }
-
-        .nav-item:hover, .nav-item.active {
-            border-bottom-color: #333;
-        }
-
-        .section {
-            display: none;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        .section-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin: 30px 0 15px 0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .abstract {
-            background-color: #f8f9fa;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 4px solid #333;
-            font-style: italic;
-        }
-
-        .post {
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .post-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .post-title a {
-            color: #333;
-            text-decoration: none;
-        }
-
-        .post-title a:hover {
-            text-decoration: underline;
-        }
-
-        .post-meta {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .post-content {
-            text-align: justify;
-            margin-bottom: 15px;
-        }
-
-        .keywords {
-            font-size: 12px;
-            color: #666;
-            font-style: italic;
-        }
-
-        .category-nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-        }
-
-        .category-item {
-            cursor: pointer;
-            padding: 8px 15px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 3px;
-            font-size: 13px;
-            transition: all 0.3s ease;
-        }
-
-        .category-item:hover, .category-item.active {
-            background-color: #333;
-            color: white;
-            border-color: #333;
-        }
-
-        .category-section {
-            display: none;
-        }
-
-        .category-section.active {
-            display: block;
-        }
-
-        .citation {
-            background-color: #f0f0f0;
-            padding: 15px;
-            margin: 15px 0;
-            border-left: 3px solid #666;
-            font-size: 14px;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            font-size: 12px;
-            color: #666;
-        }
-
-        /* Responsive Design */
-        @media screen and (max-width: 768px) {
-            body {
-                padding: 10px;
+    <!-- Script rápido de tema para evitar parpadeos -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
             }
-            
-            .container {
-                max-width: 100%;
-                margin: 0;
-                box-shadow: none;
-            }
-            
-            .paper-content {
-                padding: 15px;
-                padding-top: 15px;
-            }
-            
-            .header {
-                margin-bottom: 25px;
-                padding-bottom: 15px;
-            }
-            
-            .blog-title {
-                font-size: 20px;
-                margin-bottom: 8px;
-            }
-            
-            .author-info {
-                font-size: 13px;
-            }
-            
-            .affiliation {
-                font-size: 11px;
-            }
-            
-            .nav-menu {
-                flex-direction: column;
-                gap: 10px;
-                margin: 15px 0;
-                align-items: center;
-            }
-            
-            .nav-item {
-                font-size: 16px;
-                padding: 8px 15px;
-                width: 100%;
-                max-width: 200px;
-                text-align: center;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                border-bottom: 2px solid transparent;
-            }
-            
-            .section-title {
-                font-size: 16px;
-                margin: 20px 0 10px 0;
-            }
-            
-            .abstract {
-                padding: 15px;
-                margin: 15px 0;
-                font-size: 14px;
-            }
-            
-            .post {
-                margin-bottom: 25px;
-                padding-bottom: 15px;
-            }
-            
-            .post-title {
-                font-size: 15px;
-                line-height: 1.4;
-            }
-            
-            .post-meta {
-                font-size: 11px;
-                margin-bottom: 10px;
-            }
-            
-            .post-content {
-                font-size: 14px;
-                line-height: 1.5;
-                margin-bottom: 10px;
-            }
-            
-            .keywords {
-                font-size: 11px;
-            }
-            
-            .category-nav {
-                flex-direction: column;
-                gap: 8px;
-                padding: 10px;
-                margin: 15px 0;
-            }
-            
-            .category-item {
-                font-size: 14px;
-                padding: 10px 15px;
-                text-align: center;
-                width: 100%;
-            }
-            
-            .citation {
-                padding: 10px;
-                margin: 15px 0;
-                font-size: 13px;
-            }
-            
-            .footer {
-                margin-top: 25px;
-                padding-top: 15px;
-                font-size: 11px;
-            }
-        }
-
-        /* Tablets */
-        @media screen and (min-width: 769px) and (max-width: 1024px) {
-            .container {
-                max-width: 90%;
-            }
-            
-            .paper-content {
-                padding: 20px;
-            }
-            
-            .blog-title {
-                font-size: 22px;
-            }
-            
-            .nav-menu {
-                gap: 20px;
-            }
-            
-            .category-nav {
-                gap: 10px;
-            }
-        }
-
-        /* Mejoras generales para touch */
-        @media (hover: none) and (pointer: coarse) {
-            .nav-item {
-                min-height: 44px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            
-            .category-item {
-                min-height: 44px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            
-            .post-title a {
-                display: block;
-                padding: 5px 0;
-            }
-        }
-
-        @media print {
-            body { background: white; padding: 0; }
-            .container { box-shadow: none; }
-            .nav-menu { display: none; }
-        }
-    </style>
+        })();
+    </script>
 </head>
 <body>
     <div class="container">
         <div class="paper-content">
-            <div class="header">
-                <div class="blog-title">{{ site.title }}</div>
+            <!-- Barra Superior Editorial -->
+            <div class="masthead-top">
+                <div>
+                    <span>VOL. I • {{ site.time | date: "%Y" }}</span> | <span>JOURNAL ACADÉMICO PERSONAL</span>
+                </div>
+                <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Cambiar tema">
+                    <span id="themeIcon">🌙</span> <span id="themeText">Modo Oscuro</span>
+                </button>
+            </div>
+
+            <!-- Cabecera Principal -->
+            <header class="header">
+                <h1 class="blog-title">
+                    <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+                </h1>
                 <div class="author-info">{{ site.author }}</div>
-                <div class="affiliation">Autodidacta</div>
-            </div>
+                <div class="affiliation">
+                    <span>Estudiante & Investigadora Autodidacta</span>
+                    <span>Filosofía & Humanidades</span>
+                    <span>Tecnología</span>
+                </div>
+            </header>
 
-            <div class="nav-menu">
-                <div class="nav-item active" onclick="showSection('home')">Inicio</div>
-                <div class="nav-item" onclick="showSection('posts')">Publicaciones</div>
-                <div class="nav-item" onclick="showSection('research')">Investigación</div>
-                <div class="nav-item" onclick="showSection('about')">Acerca de</div>
-            </div>
+            <!-- Menú de Navegación Principal -->
+            <nav class="nav-menu">
+                <a href="#home" class="nav-item active" onclick="showSection('home', event)">Inicio</a>
+                <a href="#posts" class="nav-item" onclick="showSection('posts', event)">Publicaciones</a>
+                <a href="#research" class="nav-item" onclick="showSection('research', event)">Investigación</a>
+                <a href="#about" class="nav-item" onclick="showSection('about', event)">Acerca de</a>
+            </nav>
 
-            {{ content }}
+            <!-- Contenido dinámico de las páginas -->
+            <main>
+                {{ content }}
+            </main>
 
-            <div class="footer">
-                © {{ site.time | date: '%Y' }} {{ site.author }}. Este blog académico está licenciado bajo Creative Commons Attribution 4.0 International License.
-            </div>
+            <!-- Pie de Página Editorial -->
+            <footer class="footer">
+                <p>© {{ site.time | date: '%Y' }} {{ site.author }}. Licenciado bajo <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Creative Commons Attribution 4.0 International</a>.</p>
+                <p style="margin-top: 4px; font-size: 0.72rem; opacity: 0.8;">Alojado en GitHub Pages • Publicado mediante Jekyll</p>
+            </footer>
         </div>
     </div>
 
+    <!-- Scripts Globales de Interacción -->
     <script>
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.classList.remove('active'));
+        // Alternar tema Claro / Oscuro
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => item.classList.remove('active'));
-            
-            document.getElementById(sectionId).classList.add('active');
-            event.target.classList.add('active');
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeButtonText(newTheme);
         }
 
-        function showCategory(categoryId) {
-            const categories = document.querySelectorAll('.category-section');
-            categories.forEach(category => category.classList.remove('active'));
-            
-            const categoryItems = document.querySelectorAll('.category-item');
-            categoryItems.forEach(item => item.classList.remove('active'));
-            
-            document.getElementById(categoryId).classList.add('active');
-            event.target.classList.add('active');
+        function updateThemeButtonText(theme) {
+            const icon = document.getElementById('themeIcon');
+            const text = document.getElementById('themeText');
+            if (icon && text) {
+                if (theme === 'dark') {
+                    icon.textContent = '☀️';
+                    text.textContent = 'Modo Claro';
+                } else {
+                    icon.textContent = '🌙';
+                    text.textContent = 'Modo Oscuro';
+                }
+            }
         }
+
+        // Navegación de Secciones en SPA
+        function showSection(sectionId, event) {
+            if (event) {
+                event.preventDefault();
+                window.location.hash = sectionId;
+            }
+            
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            
+            const navItems = document.querySelectorAll('.nav-menu .nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === '#' + sectionId) {
+                    item.classList.add('active');
+                }
+            });
+            
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+        }
+
+        // Manejar Hash de URL (ej. #posts?tag=Filosofía o #posts)
+        function processHashRoute() {
+            const hash = window.location.hash;
+            if (!hash) return;
+
+            let section = hash.substring(1);
+            let queryParams = {};
+
+            if (section.includes('?')) {
+                const parts = section.split('?');
+                section = parts[0];
+                const queryString = parts[1];
+                const params = new URLSearchParams(queryString);
+                for (const [key, value] of params.entries()) {
+                    queryParams[key] = value;
+                }
+            }
+
+            if (['home', 'posts', 'research', 'about'].includes(section)) {
+                showSection(section, null);
+                
+                if (section === 'posts' && (queryParams.tag || queryParams.category || queryParams.search)) {
+                    // Si el script de archivo ya se cargó, aplicar filtro
+                    if (window.applyArchiveFilterFromUrl) {
+                        window.applyArchiveFilterFromUrl(queryParams);
+                    }
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar texto del botón de tema
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            updateThemeButtonText(currentTheme);
+
+            // Escuchar cambios de hash
+            processHashRoute();
+            window.addEventListener('hashchange', processHashRoute);
+        });
     </script>
 </body>
 </html>

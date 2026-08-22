@@ -2,8 +2,12 @@
 layout: post
 title: "Reflexiones primas"
 date: 2025-08-13
-categories: [reflexión]
-keywords: [pensamiento, reflexión, bosquejo]
+categories:
+  - Reflexión
+keywords:
+  - Pensamiento
+  - Reflexión
+  - Bosquejo
 excerpt: "Escribir, para mí, siempre ha sido un acto de resistencia frente al olvido."
 ---
 Escribir, para mí, siempre ha sido un acto de resistencia frente al olvido.

@@ -21,3 +21,7 @@ metodologia:
 tecnologia:
   name: "Tecnología"
   description: "IA, algoritmos y tecnología"
+
+reflexion:
+  name: "Reflexión"
+  description: "Pensamientos y notas personales"

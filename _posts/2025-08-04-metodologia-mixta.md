@@ -2,8 +2,13 @@
 layout: post
 title: "La Metodología Mixta en la Investigación Social Contemporánea"
 date: 2025-08-04
-categories: [metodologia]
-keywords: [metodología mixta, investigación social, triangulación, epistemología]
+categories:
+  - Metodología
+keywords:
+  - Metodología Mixta
+  - Investigación Social
+  - Triangulación
+  - Epistemología
 excerpt: "La integración de métodos cuantitativos y cualitativos ha emergido como una aproximación fundamental en la investigación social contemporánea."
 ---
 

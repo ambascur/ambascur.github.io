@@ -2,8 +2,12 @@
 layout: post
 title: "Reflexiones sobre la Epistemología de la Ciencia"
 date: 2025-08-04
-categories: [filosofia]
-keywords: [epistemología, filosofía de la ciencia, interdisciplinariedad]
+categories:
+  - Filosofía
+keywords:
+  - Epistemología
+  - Filosofía de la Ciencia
+  - Interdisciplinariedad
 excerpt: "La epistemología científica enfrenta nuevos desafíos en un contexto de interdisciplinariedad creciente."
 ---
 
