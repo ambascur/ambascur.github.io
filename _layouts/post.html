@@ -84,11 +84,18 @@
                 {% if page_img == nil or page_img == "" %}{% assign page_img = page.cover %}{% endif %}
 
                 <!-- Estructura de Lectura en 2 Columnas estilo Revista de Arte -->
-                <article class="article-reading-container">
+                <article class="article-reading-container"
+                    {% if page.bg_color or page.accent_color %}
+                    style="
+                        {% if page.bg_color %}--post-bg: {{ page.bg_color }};{% endif %}
+                        {% if page.accent_color %}--post-accent: {{ page.accent_color }};{% endif %}
+                    "
+                    {% endif %}
+                >
                     <div class="article-editorial-grid {% if page_img == nil or page_img == '' %}no-image{% endif %}">
                         
                         {% if page_img and page_img != "" %}
-                        <!-- Columna de la Imagen: Completa, Sin Recortar, Sticky (Fotos 1, 2, 3) -->
+                        <!-- Columna de la Imagen: Completa, Sin Recortar, Sticky (estilo HA!) -->
                         <div class="article-image-sidebar">
                             <div class="article-uncropped-frame">
                                 <img src="{{ page_img | relative_url }}" alt="{{ page.title }}" class="article-uncropped-img">
@@ -181,12 +188,21 @@
             }
         }
 
+        // Barra de progreso de lectura — adopta el color de acento del post (Sistema HA!)
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             const bar = document.getElementById('readingProgressBar');
-            if (bar) bar.style.width = scrolled + '%';
+            if (bar) {
+                bar.style.width = scrolled + '%';
+                // Obtener el color de acento del article (--post-accent) si está definido
+                const article = document.querySelector('.article-reading-container');
+                if (article) {
+                    const accentColor = getComputedStyle(article).getPropertyValue('--post-accent').trim();
+                    if (accentColor) bar.style.background = accentColor;
+                }
+            }
         });
 
         document.addEventListener('DOMContentLoaded', () => {

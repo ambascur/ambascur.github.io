@@ -3,6 +3,8 @@ layout: post
 title: "La ilusión del cuento victoriano: Mímesis, extrañamiento e hibridación genérica en “El umbral” de Cristabel LaMotte (A. S. Byatt, 1990)"
 date: 2026-06-10
 image: assets/images/hibridacion-re.png
+bg_color: "#f0ede6"
+accent_color: "#3d4a2a"
 categories:
   - Literatura
   - Ensayo

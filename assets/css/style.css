@@ -860,12 +860,68 @@ a {
 }
 
 /* ==========================================================================
-   ESTILOS DE LECTURA ESTRUCTURAL ESTÁTICA / HISTORIA DEL ARTE (HA!)
-   Imagen destacada flotante estática en el centro vertical de pantalla mientras se lee
+   PALETA DE COLORES DINÁMICA POR ENTRADA — Sistema HA! (Historia del Arte)
+   Uso: añadir bg_color y accent_color en el frontmatter de cada post en Obsidian
+   Ejemplo:
+     bg_color: "#f5f2ea"
+     accent_color: "#202a0d"
    ========================================================================== */
 
+/* El article recibe --post-bg y --post-accent como inline style desde el frontmatter */
 .article-reading-container {
+    --post-bg: var(--bg-paper);       /* Fallback: color normal del blog */
+    --post-accent: var(--accent-red); /* Fallback: rojo editorial del blog */
+    
     margin-top: 15px;
+    background-color: var(--post-bg);
+    border-radius: 0;
+    transition: background-color 0.4s ease;
+    padding: 30px;
+    margin-left: -50px;
+    margin-right: -50px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+/* Título del artículo adopta el color de acento de la imagen */
+.article-reading-container .article-header-title {
+    color: var(--post-accent);
+}
+
+/* Borde izquierdo del abstract cambia al color de acento */
+.article-reading-container .article-abstract-box {
+    border-left-color: var(--post-accent);
+}
+
+/* Insignia de categoría usa el color de acento */
+.article-reading-container .category-badge {
+    background: var(--post-accent);
+}
+
+/* Drop cap inicial usa el color de acento */
+.article-reading-container .article-body-text > p:first-of-type::first-letter {
+    color: var(--post-accent);
+}
+
+/* Línea roja de los H2 usa el color de acento */
+.article-reading-container .article-body-text h2 {
+    border-bottom-color: var(--post-accent);
+}
+
+/* H3 usa el color de acento */
+.article-reading-container .article-body-text h3 {
+    color: var(--post-accent);
+}
+
+/* Blockquotes usan el color de acento */
+.article-reading-container .article-body-text blockquote {
+    border-left-color: var(--post-accent);
+}
+
+/* Barra de progreso de lectura adopta el color de acento */
+.article-reading-container ~ * + .reading-progress-bar,
+.post-accent-progress {
+    background: var(--post-accent) !important;
 }
 
 .article-editorial-grid {
