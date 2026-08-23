@@ -15,16 +15,6 @@
 
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
-    <!-- Variables de color personalizadas por post (estilo Historia del Arte HA!) -->
-    {% if page.bg_color or page.accent_color %}
-    <style>
-        :root {
-            {% if page.bg_color %}--post-bg: {{ page.bg_color }};{% endif %}
-            {% if page.accent_color %}--post-accent: {{ page.accent_color }};{% endif %}
-        }
-    </style>
-    {% endif %}
-
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme');
@@ -36,120 +26,111 @@
         })();
     </script>
 </head>
-
-<body class="post-page">
-
-    <!-- Barra de progreso de lectura (adopta accent_color del post) -->
+<body class="ha-post-layout-body"
+    style="
+        {% if page.bg_color %}--post-bg: {{ page.bg_color }};{% endif %}
+        {% if page.accent_color %}--post-accent: {{ page.accent_color }};{% endif %}
+    "
+>
+    <!-- Reading Progress Bar -->
     <div class="reading-progress-container">
         <div class="reading-progress-bar" id="readingProgressBar"></div>
     </div>
 
-    <!-- Navegación minimal estilo HA! — sin binder, sin papel, sin bordes -->
-    <nav class="post-nav">
-        <a href="{{ '/#posts' | relative_url }}" class="post-nav-back">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="15" y1="8" x2="1" y2="8"/>
-                <polyline points="7 2 1 8 7 14"/>
-            </svg>
-            Publicaciones
-        </a>
+    <!-- Header / Navbar Minimalista Estilo Historia del Arte (HA!) -->
+    <header class="ha-navbar">
+        <div class="ha-nav-container">
+            <a href="{{ '/' | relative_url }}" class="ha-nav-logo">
+                <span class="ha-logo-badge">AB</span>
+                <span class="ha-logo-text">{{ site.title | upcase }}</span>
+            </a>
+            <div class="ha-nav-actions">
+                <a href="{{ '/#posts' | relative_url }}" class="ha-nav-link">← VOLVER AL ARCHIVO</a>
+                <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Cambiar tema">
+                    [ <span id="themeText">MODO OSCURO</span> ]
+                </button>
+            </div>
+        </div>
+    </header>
 
-        <a href="{{ '/' | relative_url }}" class="post-nav-logo">
-            {{ site.title | upcase }}
-        </a>
+    {% assign page_img = page.image %}
+    {% if page_img == nil or page_img == "" %}{% assign page_img = page.cover %}{% endif %}
 
-        <button class="post-nav-theme" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Cambiar tema">
-            <span id="themeText">◑</span>
-        </button>
-    </nav>
-
-    <!-- Contenedor principal del artículo -->
-    <main class="post-main">
-        {% assign page_img = page.image %}
-        {% if page_img == nil or page_img == "" %}{% assign page_img = page.cover %}{% endif %}
-
-        <div class="post-layout {% if page_img == nil or page_img == '' %}post-layout--no-image{% endif %}">
-
-            <!-- ═══════════════════════════════════════
-                 COLUMNA IZQUIERDA: Imagen sticky sin marco
-                 ═══════════════════════════════════════ -->
+    <!-- Main Container Full-Bleed estilo Historia del Arte (HA!) -->
+    <main class="ha-article-wrapper">
+        <div class="ha-article-grid {% if page_img == nil or page_img == '' %}no-image{% endif %}">
+            
             {% if page_img and page_img != "" %}
-            <aside class="post-image-col">
-                <div class="post-image-sticky">
-                    <img
-                        src="{{ page_img | relative_url }}"
-                        alt="{{ page.title }}"
-                        class="post-image-main"
-                    >
-                    <p class="post-image-expand">Ampliar</p>
+            <!-- Columna Izquierda: Imagen Estática Flotante HA! (Sin bordes ni carpeta) -->
+            <div class="ha-image-column">
+                <div class="ha-sticky-image-container">
+                    <img src="{{ page_img | relative_url }}" alt="{{ page.title }}" class="ha-main-image">
                 </div>
-            </aside>
+            </div>
             {% endif %}
 
-            <!-- ═══════════════════════════════════════
-                 COLUMNA DERECHA: Título + Texto
-                 ═══════════════════════════════════════ -->
-            <div class="post-content-col">
+            <!-- Columna Derecha: Contenido y Jerarquía Tipográfica HA! -->
+            <div class="ha-content-column">
+                
+                <!-- Título y Subtítulo -->
+                <h1 class="ha-post-title">{{ page.title }}</h1>
+                {% if page.excerpt and page.excerpt != "" %}
+                <p class="ha-post-subtitle">{{ page.excerpt | strip_html }}</p>
+                {% endif %}
 
-                <!-- Título y subtítulo -->
-                <header class="post-header">
-                    <h1 class="post-title">{{ page.title }}</h1>
-                    {% if page.subtitle and page.subtitle != "" %}
-                    <p class="post-subtitle">{{ page.subtitle }}</p>
-                    {% endif %}
-                </header>
-
-                <!-- Meta: autor + fecha + tiempo de lectura -->
-                <div class="post-meta-row">
-                    <span class="post-meta-author">{{ site.author }}</span>
-                    <span class="post-meta-sep">·</span>
-                    <time class="post-meta-date">{{ page.date | date: "%d %b, %Y" }}</time>
-                    {% assign words = page.content | number_of_words %}
-                    {% assign minutes = words | divided_by: 180 %}
-                    {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
-                    <span class="post-meta-sep">·</span>
-                    <span class="post-meta-read">~{{ minutes }} min de lectura</span>
+                <!-- Autor / Bloque Meta Estilo HA! -->
+                <div class="ha-author-block">
+                    <div class="ha-author-avatar">AB</div>
+                    <div class="ha-author-meta">
+                        <strong>{{ site.author }}</strong>
+                        <span>{{ page.date | date: "%B %d, %Y" }}</span>
+                    </div>
                 </div>
 
-                <!-- Categorías y etiquetas como pills con borde (estilo HA!) -->
-                {% assign all_categories = page.categories %}
+                <!-- Categorías y Tags Pills -->
+                {% assign cat = page.categories | first %}
                 {% assign all_keywords = page.keywords %}
                 {% if all_keywords == nil or all_keywords.size == 0 %}
                     {% assign all_keywords = page.tags %}
                 {% endif %}
-                {% if all_categories.size > 0 or all_keywords.size > 0 %}
-                <div class="post-pills-row">
-                    {% for cat in all_categories %}
-                    <a href="{{ '/#posts?category=' | relative_url }}{{ cat | url_encode }}" class="post-pill">{{ cat }}</a>
-                    {% endfor %}
+
+                <div class="ha-tags-row">
+                    {% if cat %}
+                    <a href="{{ '/#posts?category=' | relative_url }}{{ cat | url_encode }}" class="ha-tag-pill active">
+                        {{ cat }}
+                    </a>
+                    {% endif %}
                     {% for kw in all_keywords %}
-                    <a href="{{ '/#posts?tag=' | relative_url }}{{ kw | url_encode }}" class="post-pill">{{ kw }}</a>
+                    <a href="{{ '/#posts?tag=' | relative_url }}{{ kw | url_encode }}" class="ha-tag-pill">
+                        {{ kw }}
+                    </a>
                     {% endfor %}
                 </div>
-                {% endif %}
 
-                <!-- Extracto / Abstract (si existe) -->
-                {% if page.excerpt and page.excerpt != "" %}
-                <div class="post-abstract">
-                    {{ page.excerpt | strip_html }}
+                <!-- Especificaciones de la Entrada -->
+                <div class="ha-specs-block">
+                    {% assign words = page.content | number_of_words %}
+                    {% assign minutes = words | divided_by: 180 %}
+                    {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
+                    <div class="ha-spec-item"><strong>Lectura:</strong> ~{{ minutes }} minutos</div>
+                    <div class="ha-spec-item"><strong>Publicación:</strong> {{ page.date | date: "%d de %B, %Y" }}</div>
+                    <div class="ha-spec-item"><strong>Escrito por:</strong> {{ site.author }}</div>
                 </div>
-                {% endif %}
 
-                <!-- Cuerpo del artículo -->
-                <div class="post-body">
+                <!-- Cuerpo del Artículo -->
+                <div class="ha-article-body">
                     {{ content }}
                 </div>
 
-                <!-- Pie del artículo -->
-                <footer class="post-footer">
-                    <a href="{{ '/#posts' | relative_url }}" class="post-footer-back">
-                        ← Volver a publicaciones
-                    </a>
-                    <p class="post-footer-copy">© {{ site.time | date: '%Y' }} {{ site.author }}</p>
+                <!-- Footer del Post -->
+                <footer class="ha-post-footer">
+                    <a href="{{ '/#posts' | relative_url }}" class="ha-back-button">← Volver al Archivo de Publicaciones</a>
+                    <p class="ha-copyright">© {{ site.time | date: '%Y' }} {{ site.author }}</p>
                 </footer>
 
-            </div><!-- /post-content-col -->
-        </div><!-- /post-layout -->
+            </div>
+
+        </div>
     </main>
 
     <script>
@@ -158,21 +139,35 @@
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
+            updateThemeButtonText(newTheme);
         }
 
-        // Barra de progreso — usa --post-accent si está definido
-        (function() {
+        function updateThemeButtonText(theme) {
+            const text = document.getElementById('themeText');
+            if (text) {
+                text.textContent = theme === 'dark' ? 'MODO CLARO' : 'MODO OSCURO';
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
             const bar = document.getElementById('readingProgressBar');
-            const accent = getComputedStyle(document.documentElement).getPropertyValue('--post-accent').trim();
-            if (bar && accent) bar.style.background = accent;
+            if (bar) {
+                bar.style.width = scrolled + '%';
+                const body = document.querySelector('body.ha-post-layout-body');
+                if (body) {
+                    const accentColor = getComputedStyle(body).getPropertyValue('--post-accent').trim();
+                    if (accentColor) bar.style.background = accentColor;
+                }
+            }
+        });
 
-            window.addEventListener('scroll', () => {
-                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                if (bar && height > 0) bar.style.width = ((winScroll / height) * 100) + '%';
-            }, { passive: true });
-        })();
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            updateThemeButtonText(currentTheme);
+        });
     </script>
-
 </body>
 </html>

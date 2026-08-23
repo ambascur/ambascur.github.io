@@ -860,235 +860,354 @@ a {
 }
 
 /* ==========================================================================
-   PALETA DE COLORES DINÁMICA POR ENTRADA — Sistema HA! (Historia del Arte)
-   Uso: añadir bg_color y accent_color en el frontmatter de cada post en Obsidian
-   Ejemplo:
-     bg_color: "#f5f2ea"
-     accent_color: "#202a0d"
+   MAQUETACIÓN EDITORIAL FULL-BLEED GALERÍA — HISTORIA DEL ARTE (HA!) EXACTA
+   Lienzo completo de pantalla a pantalla, sin carpetas, bordes de papel ni anillos.
    ========================================================================== */
 
-/* El article recibe --post-bg y --post-accent como inline style desde el frontmatter */
-.article-reading-container {
-    --post-bg: var(--bg-paper);       /* Fallback: color normal del blog */
-    --post-accent: var(--accent-red); /* Fallback: rojo editorial del blog */
-    
-    margin-top: 15px;
+/* Fondo de la página de post adopta la paleta dinámica o el tema */
+body.ha-post-layout-body {
+    --post-bg: var(--bg-paper);
+    --post-accent: var(--accent-red);
     background-color: var(--post-bg);
-    border-radius: 0;
-    transition: background-color 0.4s ease;
-    padding: 30px;
-    margin-left: -50px;
-    margin-right: -50px;
-    padding-left: 50px;
-    padding-right: 50px;
+    color: var(--text-primary);
+    transition: background-color 0.4s ease, color 0.4s ease;
+    margin: 0;
+    padding: 0;
+    overflow-x: clip;
 }
 
-/* Título del artículo adopta el color de acento de la imagen */
-.article-reading-container .article-header-title {
-    color: var(--post-accent);
+/* Navbar superior minimalista sin marcos */
+.ha-navbar {
+    width: 100%;
+    padding: 20px 40px;
+    background: transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-/* Borde izquierdo del abstract cambia al color de acento */
-.article-reading-container .article-abstract-box {
-    border-left-color: var(--post-accent);
+.ha-nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* Insignia de categoría usa el color de acento */
-.article-reading-container .category-badge {
+.ha-nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.ha-logo-badge {
     background: var(--post-accent);
+    color: #ffffff;
+    font-family: var(--font-head-impact);
+    font-size: 0.85rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    letter-spacing: 0.05em;
+    transition: background 0.4s ease;
 }
 
-/* Drop cap inicial usa el color de acento */
-.article-reading-container .article-body-text > p:first-of-type::first-letter {
+.ha-logo-text {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+}
+
+.ha-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.ha-nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.ha-nav-link:hover {
     color: var(--post-accent);
 }
 
-/* Línea roja de los H2 usa el color de acento */
-.article-reading-container .article-body-text h2 {
-    border-bottom-color: var(--post-accent);
+/* Wrapper del Artículo HA! */
+.ha-article-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 50px 40px 100px 40px;
 }
 
-/* H3 usa el color de acento */
-.article-reading-container .article-body-text h3 {
-    color: var(--post-accent);
-}
-
-/* Blockquotes usan el color de acento */
-.article-reading-container .article-body-text blockquote {
-    border-left-color: var(--post-accent);
-}
-
-/* Barra de progreso de lectura adopta el color de acento */
-.article-reading-container ~ * + .reading-progress-bar,
-.post-accent-progress {
-    background: var(--post-accent) !important;
-}
-
-.article-editorial-grid {
+/* Grilla de 2 columnas estilo HA! */
+.ha-article-grid {
     display: grid;
-    grid-template-columns: 440px 1fr;
-    gap: 50px;
+    grid-template-columns: 480px 1fr;
+    gap: 70px;
     align-items: start;
 }
 
-.article-editorial-grid.no-image {
+.ha-article-grid.no-image {
     grid-template-columns: 1fr;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-/* Columna de Imagen Estática estilo Galería / Historia del Arte (HA!) */
-.article-image-sidebar {
+/* Columna Izquierda: Imagen Sticky pura sin bordes ni marcos de papel */
+.ha-image-column {
     position: sticky;
-    top: 90px; /* Se posiciona elegantemente en la mitad/tercio superior de la ventana al bajar por el texto */
+    top: 40px;
     align-self: start;
     z-index: 10;
 }
 
-.article-uncropped-frame {
-    background: transparent;
-    padding: 0;
-    border: none;
-    box-shadow: none;
-    transition: transform 0.3s ease;
+.ha-sticky-image-container {
+    width: 100%;
 }
 
-.article-uncropped-img {
+.ha-main-image {
     width: 100%;
     height: auto;
-    max-height: 72vh;
-    object-fit: contain; /* NUNCA corta la obra o ilustración */
+    max-height: 82vh;
+    object-fit: contain;
     display: block;
-    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.12));
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.12));
 }
 
-.article-image-caption {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-muted);
-    margin-top: 14px;
-    padding-top: 10px;
-    border-top: 1px solid var(--border-subtle);
-    display: flex;
-    justify-content: space-between;
-}
-
-.article-content-column {
+/* Columna Derecha: Jerarquía Tipográfica de Historia del Arte */
+.ha-content-column {
     display: flex;
     flex-direction: column;
     min-width: 0;
 }
 
-.article-header-meta {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-muted);
-    margin-bottom: 12px;
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.article-header-title {
-    font-family: var(--font-head-impact);
-    font-size: clamp(2rem, 6vw, 3.2rem);
-    line-height: 1.08;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-    margin-bottom: 20px;
+.ha-post-title {
+    font-family: var(--font-sans);
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--post-accent);
+    margin: 0 0 10px 0;
     word-break: break-word;
+    transition: color 0.4s ease;
 }
 
-.article-abstract-box {
-    background: var(--bg-subtle);
-    border-left: 4px solid var(--accent-red);
-    padding: 20px 24px;
-    margin-bottom: 30px;
-    font-family: var(--font-serif-body);
-    font-size: 1.05rem;
-    line-height: 1.65;
+.ha-post-subtitle {
+    font-family: var(--font-sans);
+    font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+    font-weight: 400;
+    line-height: 1.4;
     color: var(--text-secondary);
+    margin: 0 0 28px 0;
+    opacity: 0.9;
 }
 
-.article-abstract-box strong {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
+/* Bloque de Autor HA! */
+.ha-author-block {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.ha-author-avatar {
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-head-impact);
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--post-accent);
+}
+
+.ha-author-meta {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    line-height: 1.35;
+}
+
+.ha-author-meta strong {
+    font-weight: 700;
     color: var(--text-primary);
-    display: block;
-    margin-bottom: 6px;
 }
 
-.article-body-text, .post-detail-body {
+.ha-author-meta span {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
+
+/* Fila de Etiquetas Pills HA! */
+.ha-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+}
+
+.ha-tag-pill {
+    padding: 6px 14px;
+    border: 1px solid var(--border-heavy);
+    background: transparent;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.ha-tag-pill.active, .ha-tag-pill:hover {
+    background: var(--text-primary);
+    color: var(--post-bg);
+}
+
+/* Especificaciones Meta */
+.ha-specs-block {
+    margin-bottom: 35px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    line-height: 1.85;
+    color: var(--text-muted);
+}
+
+.ha-spec-item strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Cuerpo del Artículo HA! */
+.ha-article-body {
     font-family: var(--font-serif-body);
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     line-height: 1.85;
     color: var(--text-primary);
-    min-width: 0;
 }
 
-.article-body-text > p:first-of-type::first-letter,
-.post-detail-body > p:first-of-type::first-letter {
-    font-family: var(--font-head-impact);
-    font-size: 4rem;
-    float: left;
-    line-height: 0.8;
-    padding-right: 12px;
-    padding-top: 4px;
-    color: var(--accent-red);
-}
-
-/* Novedad: Subtítulos ## (H2) y ### (H3) hiper-legibles en Sans-Serif Limpia */
-.article-body-text h2, .post-detail-body h2 {
+.ha-article-body > p:first-of-type::first-letter {
     font-family: var(--font-sans);
-    font-size: 1.45rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+    font-size: 4.5rem;
+    font-weight: 800;
+    float: left;
+    line-height: 0.76;
+    padding-right: 14px;
+    padding-top: 4px;
+    color: var(--post-accent);
+    transition: color 0.4s ease;
+}
+
+.ha-article-body h2 {
+    font-family: var(--font-sans);
+    font-size: 1.55rem;
+    font-weight: 800;
     text-transform: uppercase;
     color: var(--text-primary);
-    margin: 42px 0 18px 0;
-    border-bottom: 2px solid var(--border-heavy);
+    margin: 45px 0 20px 0;
+    border-bottom: 2px solid var(--post-accent);
     padding-bottom: 8px;
+    transition: border-color 0.4s ease;
 }
 
-.article-body-text h3, .post-detail-body h3 {
+.ha-article-body h3 {
     font-family: var(--font-sans);
-    font-size: 1.2rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    color: var(--accent-red);
-    margin: 32px 0 14px 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--post-accent);
+    margin: 35px 0 15px 0;
+    transition: color 0.4s ease;
 }
 
-.article-body-text p, .post-detail-body p {
-    margin-bottom: 22px;
+.ha-article-body p {
+    margin-bottom: 24px;
     text-align: justify;
 }
 
-.article-body-text blockquote, .post-detail-body blockquote, .citation {
-    background: var(--bg-subtle);
-    border-left: 4px solid var(--accent-red);
-    padding: 20px 24px;
-    font-style: italic;
-    margin: 30px 0;
+.ha-article-body strong {
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
-/* Estilo para imágenes secundarias insertadas dentro del ensayo Markdown (Estilo Lámina de Museo HA!) */
-.article-body-text img, .post-detail-body img {
+.ha-article-body blockquote {
+    border-left: 4px solid var(--post-accent);
+    background: rgba(0, 0, 0, 0.03);
+    padding: 22px 28px;
+    margin: 32px 0;
+    font-style: italic;
+    transition: border-color 0.4s ease;
+}
+
+.ha-article-body img {
     max-width: 100%;
     height: auto;
     display: block;
     margin: 35px auto;
-    border: 1px solid var(--border-heavy);
-    padding: 8px;
+    border: 1px solid var(--border-subtle);
+    padding: 6px;
     background: var(--bg-card);
-    box-shadow: 4px 8px 20px rgba(0,0,0,0.06);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
+
+/* Footer del Post */
+.ha-post-footer {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.ha-back-button {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--post-accent);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.ha-copyright {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+/* Responsive Móvil Historia del Arte (HA!) */
+@media (max-width: 1000px) {
+    .ha-article-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .ha-image-column {
+        position: relative;
+        top: 0;
+    }
+
+    .ha-navbar {
+        padding: 15px 20px;
+    }
+
+    .ha-article-wrapper {
+        padding: 25px 20px 60px 20px;
+    }
+}
+
 
 .back-link {
     display: inline-block;
@@ -1254,375 +1373,3 @@ a {
         padding: 20px;
     }
 }
-
-/* ==========================================================================
-   LAYOUT DE LECTURA ESTILO HA! (Historia del Arte)
-   Solo activo en páginas con class="post-page" (i.e. _layouts/post.html)
-   No afecta nada de la página principal ni el binder del inicio.
-   ========================================================================== */
-
-/* El body de los posts adopta el color de fondo del post */
-body.post-page {
-    --post-bg: var(--bg-paper);
-    --post-accent: var(--accent-red);
-    background-color: var(--post-bg);
-    overflow-x: clip;
-    min-height: 100vh;
-}
-
-/* ─── Navegación Minimal ────────────────────────────────────────────────── */
-.post-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background-color: var(--post-bg);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 40px;
-    border-bottom: 1px solid color-mix(in srgb, var(--post-accent) 20%, transparent);
-    transition: background-color 0.3s ease;
-}
-
-.post-nav-back {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-sans);
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.15s ease;
-}
-
-.post-nav-back:hover {
-    color: var(--post-accent);
-}
-
-.post-nav-logo {
-    font-family: var(--font-head-impact);
-    font-size: 0.85rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    color: var(--text-primary);
-    text-decoration: none;
-    text-transform: uppercase;
-}
-
-.post-nav-theme {
-    background: none;
-    border: none;
-    font-size: 1.1rem;
-    cursor: pointer;
-    color: var(--text-muted);
-    padding: 4px 8px;
-    transition: color 0.15s ease;
-    line-height: 1;
-}
-
-.post-nav-theme:hover {
-    color: var(--post-accent);
-}
-
-/* ─── Contenedor Principal ─────────────────────────────────────────────── */
-.post-main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 40px 80px;
-}
-
-/* ─── Layout 2 Columnas ────────────────────────────────────────────────── */
-.post-layout {
-    display: grid;
-    grid-template-columns: 380px 1fr;
-    gap: 70px;
-    align-items: start;
-    padding-top: 50px;
-}
-
-.post-layout--no-image {
-    grid-template-columns: 1fr;
-    max-width: 720px;
-    margin: 0 auto;
-}
-
-/* ─── Columna Imagen — Sin marco, sticky, flotante (estilo HA!) ─────────── */
-.post-image-col {
-    /* nada extra — el sticky está en el hijo */
-}
-
-.post-image-sticky {
-    position: sticky;
-    top: 80px; /* justo bajo la nav */
-    align-self: start;
-}
-
-.post-image-main {
-    width: 100%;
-    height: auto;
-    max-height: 80vh;
-    object-fit: contain;
-    display: block;
-    /* Sin borde, sin padding, sin sombra — pura imagen sobre el fondo del post */
-}
-
-.post-image-expand {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    text-align: center;
-    margin-top: 10px;
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-/* ─── Columna Contenido ────────────────────────────────────────────────── */
-.post-content-col {
-    min-width: 0;
-}
-
-/* ─── Cabecera del artículo ─────────────────────────────────────────────── */
-.post-header {
-    margin-bottom: 20px;
-}
-
-.post-title {
-    font-family: var(--font-serif-display); /* Bodoni Moda — igual que HA! */
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    font-weight: 700;
-    line-height: 1.1;
-    color: var(--post-accent);
-    margin-bottom: 10px;
-    word-break: break-word;
-}
-
-.post-subtitle {
-    font-family: var(--font-serif-display);
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    font-weight: 400;
-    font-style: italic;
-    color: var(--text-secondary);
-    margin: 0;
-    line-height: 1.3;
-}
-
-/* ─── Meta (autor · fecha · lectura) ─────────────────────────────────────── */
-.post-meta-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    align-items: center;
-    font-family: var(--font-sans);
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-}
-
-.post-meta-author {
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.post-meta-sep {
-    color: var(--border-subtle);
-}
-
-/* ─── Pills de categorías y etiquetas (borde, sin relleno — como HA!) ─────── */
-.post-pills-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 28px;
-}
-
-.post-pill {
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    text-decoration: none;
-    border: 1.5px solid var(--text-primary);
-    padding: 4px 14px;
-    transition: all 0.15s ease;
-    display: inline-block;
-}
-
-.post-pill:hover {
-    background: var(--post-accent);
-    border-color: var(--post-accent);
-    color: var(--bg-paper);
-}
-
-/* ─── Abstract / Extracto ───────────────────────────────────────────────── */
-.post-abstract {
-    font-family: var(--font-serif-body);
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    border-left: 3px solid var(--post-accent);
-    padding: 12px 18px;
-    margin-bottom: 30px;
-    font-style: italic;
-}
-
-/* ─── Cuerpo del artículo ───────────────────────────────────────────────── */
-.post-body {
-    font-family: var(--font-serif-body);
-    font-size: 1.08rem;
-    line-height: 1.85;
-    color: var(--text-primary);
-    min-width: 0;
-}
-
-/* Drop cap en el primer párrafo (igual que HA!) */
-.post-body > p:first-of-type::first-letter {
-    font-family: var(--font-serif-display);
-    font-size: 4rem;
-    font-weight: 700;
-    float: left;
-    line-height: 0.82;
-    padding-right: 10px;
-    padding-top: 5px;
-    color: var(--post-accent);
-}
-
-.post-body p {
-    margin-bottom: 20px;
-}
-
-.post-body h1,
-.post-body h2 {
-    font-family: var(--font-sans);
-    font-size: 1.25rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--text-primary);
-    border-bottom: 1.5px solid var(--post-accent);
-    padding-bottom: 6px;
-    margin: 40px 0 16px;
-}
-
-.post-body h3 {
-    font-family: var(--font-sans);
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--post-accent);
-    margin: 28px 0 12px;
-}
-
-.post-body blockquote {
-    border-left: 3px solid var(--post-accent);
-    padding: 16px 20px;
-    margin: 28px 0;
-    font-style: italic;
-    color: var(--text-secondary);
-    background: color-mix(in srgb, var(--post-accent) 5%, var(--post-bg));
-}
-
-.post-body strong {
-    font-weight: 700;
-    color: var(--text-primary);
-}
-
-.post-body em {
-    font-style: italic;
-}
-
-.post-body a {
-    color: var(--post-accent);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-.post-body img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 32px auto;
-}
-
-.post-body ul,
-.post-body ol {
-    padding-left: 1.5rem;
-    margin-bottom: 20px;
-}
-
-.post-body li {
-    margin-bottom: 6px;
-}
-
-/* ─── Pie del artículo ──────────────────────────────────────────────────── */
-.post-footer {
-    margin-top: 60px;
-    padding-top: 24px;
-    border-top: 1px solid color-mix(in srgb, var(--post-accent) 25%, transparent);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.post-footer-back {
-    font-family: var(--font-sans);
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--post-accent);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-.post-footer-copy {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--text-muted);
-}
-
-/* ─── Mobile responsive para posts ─────────────────────────────────────── */
-@media (max-width: 860px) {
-    .post-layout {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        padding-top: 30px;
-    }
-
-    .post-image-sticky {
-        position: relative;
-        top: 0;
-    }
-
-    .post-image-main {
-        max-height: 60vw;
-        margin: 0 auto;
-    }
-
-    .post-nav {
-        padding: 12px 20px;
-    }
-
-    .post-main {
-        padding: 0 20px 60px;
-    }
-
-    .post-title {
-        font-size: clamp(1.6rem, 6vw, 2.4rem);
-    }
-}
-
-@media (max-width: 480px) {
-    .post-nav {
-        padding: 10px 14px;
-    }
-
-    .post-main {
-        padding: 0 14px 50px;
-    }
-
-    .post-body > p:first-of-type::first-letter {
-        font-size: 3rem;
-    }
-}
-
