@@ -1,6 +1,6 @@
 /* ==========================================================================
    REFLEXIONES ACADÉMICAS - ESTILO EDITORIAL / MAGAZINE / BINDER
-   Inspirado en publicaciones de archivo, AWARE, Maison Margiela y collage.
+   Inspirado en publicaciones de archivo, AWARE, Maison Margiela, HA! y collage.
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cinzel:wght@600;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Syne:wght@700;800&display=swap');
@@ -83,7 +83,7 @@ body {
 /* Prevención Universal de Desbordamiento Horizontal (Evita que textos/URLs largas ensanchen la pantalla) */
 html, body, main, .binder-container, .binder-inner-page, .article-reading-container, .article-editorial-grid, .article-content-column, .article-body-text, .post-detail-body {
     max-width: 100%;
-    min-width: 0; /* Permite que las columnas de CSS Grid se reduzcan adecuadamente */
+    min-width: 0;
 }
 
 .article-content-column {
@@ -860,7 +860,8 @@ a {
 }
 
 /* ==========================================================================
-   ESTILOS DE LECTURA DE ARTÍCULOS E HIPER-LEGIBILIDAD DE SUBTÍTULOS (##)
+   ESTILOS DE LECTURA ESTRUCTURAL ESTÁTICA / HISTORIA DEL ARTE (HA!)
+   Imagen destacada flotante estática en el centro vertical de pantalla mientras se lee
    ========================================================================== */
 
 .article-reading-container {
@@ -869,8 +870,8 @@ a {
 
 .article-editorial-grid {
     display: grid;
-    grid-template-columns: 400px 1fr;
-    gap: 45px;
+    grid-template-columns: 440px 1fr;
+    gap: 50px;
     align-items: start;
 }
 
@@ -878,35 +879,40 @@ a {
     grid-template-columns: 1fr;
 }
 
+/* Columna de Imagen Estática estilo Galería / Historia del Arte (HA!) */
 .article-image-sidebar {
     position: sticky;
-    top: 20px;
+    top: 90px; /* Se posiciona elegantemente en la mitad/tercio superior de la ventana al bajar por el texto */
+    align-self: start;
+    z-index: 10;
 }
 
 .article-uncropped-frame {
-    border: 1px solid var(--border-heavy);
-    background: var(--bg-card);
-    padding: 10px;
-    box-shadow: 6px 8px 18px rgba(0, 0, 0, 0.08);
+    background: transparent;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    transition: transform 0.3s ease;
 }
 
 .article-uncropped-img {
     width: 100%;
     height: auto;
-    max-height: 80vh;
-    object-fit: contain;
+    max-height: 72vh;
+    object-fit: contain; /* NUNCA corta la obra o ilustración */
     display: block;
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.12));
 }
 
 .article-image-caption {
     font-family: var(--font-mono);
-    font-size: 0.68rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     color: var(--text-muted);
-    margin-top: 12px;
-    padding-top: 8px;
-    border-top: 1px dashed var(--border-subtle);
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-subtle);
     display: flex;
     justify-content: space-between;
 }
@@ -965,7 +971,7 @@ a {
 .article-body-text, .post-detail-body {
     font-family: var(--font-serif-body);
     font-size: 1.15rem;
-    line-height: 1.8;
+    line-height: 1.85;
     color: var(--text-primary);
     min-width: 0;
 }
@@ -973,10 +979,10 @@ a {
 .article-body-text > p:first-of-type::first-letter,
 .post-detail-body > p:first-of-type::first-letter {
     font-family: var(--font-head-impact);
-    font-size: 3.8rem;
+    font-size: 4rem;
     float: left;
     line-height: 0.8;
-    padding-right: 10px;
+    padding-right: 12px;
     padding-top: 4px;
     color: var(--accent-red);
 }
@@ -1016,14 +1022,16 @@ a {
     margin: 30px 0;
 }
 
+/* Estilo para imágenes secundarias insertadas dentro del ensayo Markdown (Estilo Lámina de Museo HA!) */
 .article-body-text img, .post-detail-body img {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 30px auto;
+    margin: 35px auto;
     border: 1px solid var(--border-heavy);
-    padding: 6px;
+    padding: 8px;
     background: var(--bg-card);
+    box-shadow: 4px 8px 20px rgba(0,0,0,0.06);
 }
 
 .back-link {
