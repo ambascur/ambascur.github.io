@@ -1254,3 +1254,375 @@ a {
         padding: 20px;
     }
 }
+
+/* ==========================================================================
+   LAYOUT DE LECTURA ESTILO HA! (Historia del Arte)
+   Solo activo en páginas con class="post-page" (i.e. _layouts/post.html)
+   No afecta nada de la página principal ni el binder del inicio.
+   ========================================================================== */
+
+/* El body de los posts adopta el color de fondo del post */
+body.post-page {
+    --post-bg: var(--bg-paper);
+    --post-accent: var(--accent-red);
+    background-color: var(--post-bg);
+    overflow-x: clip;
+    min-height: 100vh;
+}
+
+/* ─── Navegación Minimal ────────────────────────────────────────────────── */
+.post-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--post-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 40px;
+    border-bottom: 1px solid color-mix(in srgb, var(--post-accent) 20%, transparent);
+    transition: background-color 0.3s ease;
+}
+
+.post-nav-back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.post-nav-back:hover {
+    color: var(--post-accent);
+}
+
+.post-nav-logo {
+    font-family: var(--font-head-impact);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--text-primary);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.post-nav-theme {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    padding: 4px 8px;
+    transition: color 0.15s ease;
+    line-height: 1;
+}
+
+.post-nav-theme:hover {
+    color: var(--post-accent);
+}
+
+/* ─── Contenedor Principal ─────────────────────────────────────────────── */
+.post-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+}
+
+/* ─── Layout 2 Columnas ────────────────────────────────────────────────── */
+.post-layout {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 70px;
+    align-items: start;
+    padding-top: 50px;
+}
+
+.post-layout--no-image {
+    grid-template-columns: 1fr;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+/* ─── Columna Imagen — Sin marco, sticky, flotante (estilo HA!) ─────────── */
+.post-image-col {
+    /* nada extra — el sticky está en el hijo */
+}
+
+.post-image-sticky {
+    position: sticky;
+    top: 80px; /* justo bajo la nav */
+    align-self: start;
+}
+
+.post-image-main {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    display: block;
+    /* Sin borde, sin padding, sin sombra — pura imagen sobre el fondo del post */
+}
+
+.post-image-expand {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* ─── Columna Contenido ────────────────────────────────────────────────── */
+.post-content-col {
+    min-width: 0;
+}
+
+/* ─── Cabecera del artículo ─────────────────────────────────────────────── */
+.post-header {
+    margin-bottom: 20px;
+}
+
+.post-title {
+    font-family: var(--font-serif-display); /* Bodoni Moda — igual que HA! */
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--post-accent);
+    margin-bottom: 10px;
+    word-break: break-word;
+}
+
+.post-subtitle {
+    font-family: var(--font-serif-display);
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* ─── Meta (autor · fecha · lectura) ─────────────────────────────────────── */
+.post-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.post-meta-author {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.post-meta-sep {
+    color: var(--border-subtle);
+}
+
+/* ─── Pills de categorías y etiquetas (borde, sin relleno — como HA!) ─────── */
+.post-pills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+}
+
+.post-pill {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-decoration: none;
+    border: 1.5px solid var(--text-primary);
+    padding: 4px 14px;
+    transition: all 0.15s ease;
+    display: inline-block;
+}
+
+.post-pill:hover {
+    background: var(--post-accent);
+    border-color: var(--post-accent);
+    color: var(--bg-paper);
+}
+
+/* ─── Abstract / Extracto ───────────────────────────────────────────────── */
+.post-abstract {
+    font-family: var(--font-serif-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    border-left: 3px solid var(--post-accent);
+    padding: 12px 18px;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* ─── Cuerpo del artículo ───────────────────────────────────────────────── */
+.post-body {
+    font-family: var(--font-serif-body);
+    font-size: 1.08rem;
+    line-height: 1.85;
+    color: var(--text-primary);
+    min-width: 0;
+}
+
+/* Drop cap en el primer párrafo (igual que HA!) */
+.post-body > p:first-of-type::first-letter {
+    font-family: var(--font-serif-display);
+    font-size: 4rem;
+    font-weight: 700;
+    float: left;
+    line-height: 0.82;
+    padding-right: 10px;
+    padding-top: 5px;
+    color: var(--post-accent);
+}
+
+.post-body p {
+    margin-bottom: 20px;
+}
+
+.post-body h1,
+.post-body h2 {
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+    border-bottom: 1.5px solid var(--post-accent);
+    padding-bottom: 6px;
+    margin: 40px 0 16px;
+}
+
+.post-body h3 {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--post-accent);
+    margin: 28px 0 12px;
+}
+
+.post-body blockquote {
+    border-left: 3px solid var(--post-accent);
+    padding: 16px 20px;
+    margin: 28px 0;
+    font-style: italic;
+    color: var(--text-secondary);
+    background: color-mix(in srgb, var(--post-accent) 5%, var(--post-bg));
+}
+
+.post-body strong {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.post-body em {
+    font-style: italic;
+}
+
+.post-body a {
+    color: var(--post-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.post-body img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 32px auto;
+}
+
+.post-body ul,
+.post-body ol {
+    padding-left: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.post-body li {
+    margin-bottom: 6px;
+}
+
+/* ─── Pie del artículo ──────────────────────────────────────────────────── */
+.post-footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid color-mix(in srgb, var(--post-accent) 25%, transparent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.post-footer-back {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--post-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.post-footer-copy {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+/* ─── Mobile responsive para posts ─────────────────────────────────────── */
+@media (max-width: 860px) {
+    .post-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding-top: 30px;
+    }
+
+    .post-image-sticky {
+        position: relative;
+        top: 0;
+    }
+
+    .post-image-main {
+        max-height: 60vw;
+        margin: 0 auto;
+    }
+
+    .post-nav {
+        padding: 12px 20px;
+    }
+
+    .post-main {
+        padding: 0 20px 60px;
+    }
+
+    .post-title {
+        font-size: clamp(1.6rem, 6vw, 2.4rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .post-nav {
+        padding: 10px 14px;
+    }
+
+    .post-main {
+        padding: 0 14px 50px;
+    }
+
+    .post-body > p:first-of-type::first-letter {
+        font-size: 3rem;
+    }
+}
+
