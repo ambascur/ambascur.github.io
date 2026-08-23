@@ -4,7 +4,7 @@ title: "La ilusión del cuento victoriano: Mímesis, extrañamiento e hibridaci�
 date: 2026-06-10
 image: assets/images/hibridacion-re.png
 bg_color: "#f0ede6"
-accent_color: "#3d4a2a"
+accent_color: "#850305"
 categories:
   - Literatura
   - Ensayo
