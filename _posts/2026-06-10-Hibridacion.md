@@ -2,7 +2,7 @@
 layout: post
 title: "La ilusión del cuento victoriano: Mímesis, extrañamiento e hibridación genérica en “El umbral” de Cristabel LaMotte (A. S. Byatt, 1990)"
 date: 2026-06-10
-image: assets/images/nombre_de_tu_imagen.jpg
+image: assets/images/hibridacion-re.png
 categories:
   - Literatura
   - Ensayo
@@ -12,7 +12,7 @@ keywords:
   - A.S Byatt
   - Lamotte
   - Posesión
-excerpt: análisis de cómo "El umbral" de la escritora ficticia Lamotte opera como un espacio de hibridación genérica
+excerpt: análisis de cómo "El umbral" de la escritora ficticia Lamotte opera como un espacio de hibridación genérica.
 ---
 # Querido Diario:
 ---
@@ -28,7 +28,7 @@ A partir de estas premisas, se plantea la pregunta que guiará esta investigaci�
 
 ## Desarrollo y Análisis
 
-### 1. **La mímesis y el extrañamiento formalista**
+## 1. **La mímesis y el extrañamiento formalista**
 El cuento "El umbral" de Christabel LaMotte a primera vista no se inscribe dentro de la mímesis tradicional, entendida en términos aristotélicos como la imitación directa de las acciones de la naturaleza o la realidad humana; va más allá de ella, dado que ejecuta lo que puede denominarse una mímesis de segundo grado. A. S. Byatt no pretende copiar el mundo exterior, aunque sí decide deliberadamente imitar de manera exhaustiva la producción literaria del siglo XIX, encarnando sus marcas estilísticas, giros lingüísticos y temáticas repetidas en los textos clásicos. Al adoptar esta estrategia, la literatura se convierte en su propio objeto de análisis. El texto indirectamente evidencia que el canon literario no es tanto una verdad natural o un reflejo fijo de la historia como un constructo formal maleable que puede ser desmontado, imitado y críticamente reconfigurado desde la sensibilidad posmoderna. Dentro de la novela se articulan relaciones complejas entre los académicos contemporáneos del mundo de Byatt y sus trabajos; llamados a proteger al canon como si fuera sagrado, al mismo tiempo que les aseguran que nunca serán parte de él, por lo que no vale la pena intentar escribir sus propias ideas. 
 
 Por otro lado, para quebrar la percepción automatizada de este universo narrativo, el texto recurre de manera sistemática al concepto de extrañamiento teorizado por Viktor Shklovski (1917). Shklovski señalaba que las leyes de la cotidianidad y el uso práctico del lenguaje tienden a insensibilizar al ser humano frente a su entorno, por lo que la misión del arte consiste en devolver la frescura a la percepción mediante procedimientos formales que vuelvan extraños los objetos familiares, que los desconfiguren a la percepción, logrando el efecto de "observarlos por primera vez". LaMotte toma los motivos conocidos del cuento de hadas clásico, el caballero andante o doncel, la advertencia de una anciana, el bosque misterioso y el viaje iniciático, y los describe mediante una atmósfera de enorme densidad y gótica oscuridad que obliga al lector a detenerse en la materialidad del discurso. El espacio geográfico se presenta de una forma sumamente inusual y desorientadora con elementos narrativos más adultos que infantiles, 
@@ -40,13 +40,13 @@ Esta deconstrucción del personaje valeroso y perfecto, que irónicamente sitúa
 
 La estrategia de desautomatización expuesta se vincula estrechamente con la noción de literariedad formulada por Roman Jakobson (2026), según la cual el lenguaje estético dirige la atención del lector hacia la propia materialidad del mensaje y sus recursos formales. Dicha literariedad se organiza en "El umbral" mediante la distinción teórica desarrollada por Boris Tomashevsky (1982) en su teoría de la literatura entre el argumento, es decir el conjunto de acontecimientos representados según su orden causal y cronológico, y la trama, o manera deliberada y artística en que el relato dispone la aparición de dichos acontecimientos en el discurso. Al dilatar la andadura del Doncel y retrasar deliberadamente la revelación de aquello que se oculta en el umbral, LaMotte subordina la resolución de la intriga heroica al despliegue de las descripciones simbólicas. Se privilegia de este modo el valor puramente autorreferencial del texto por encima de la función moralizadora o pedagógica propia del relato de hadas tradicional.
 
-### 2. La crisis de los géneros
+## 2. La crisis de los géneros
 
 La complejidad formal de "El umbral" responde directamente a la problemática de los géneros literarios contemporáneos y su radical incapacidad para someterse a límites y clasificaciones rígidas. El relato se reviste de la superficie de una fábula clásica perteneciente al canon del mundo del libro Posesión, pero la densidad de su atmósfera, la sutil ambigüedad de sus resoluciones y su profunda exploración de la psicología y la resistencia de las mujeres pertenecen por entero a la narrativa contemporánea del siglo XX. Se trata de un género esencialmente híbrido, puesto que nos habita en tres tiempos diferentes, uno moderno con apariencia de victoriano que, al estar incrustado dentro de la gran novela Posesión, sabotea cualquier pretensión de pureza formal o de veracidad (a pesar de la inspiración de Byatt en escritoras inglesas para la elaboración de sus personajes), de esta forma, nos enfrentamos a una novela en apariencia, pero que contiene además, cuentos, poesía, y una suerte de meta ensayo sobre la investigación historiográfica y filológica de los mismos textos ficticios, por lo que podemos decir que su hibridación mezcla los géneros canónicos de narrativa, lírica, ensayo, entre otros.
 
 Esta naturaleza híbrida entra en una fructífera complementación con el postulado clásico de la "unidad de efecto" desarrollado por Edgar Allan Poe en La filosofía de la composición (1846). Poe exigía que todo cuento digno de ese nombre debía planificarse minuciosamente en función de un único impacto emocional final, la unidad de impresión, lo cual requería obligatoriamente que la obra fuera breve para ser leída "de una sola sentada", evitando que las interferencias de la vida cotidiana destruyeran la totalidad de la impresión estética, o cómo él lo formula, “Si una obra literaria es demasiado extensa para ser leída en una sola sesión, debemos resignarnos a quedar privados del efecto, soberanamente decisivo, de la unidad de impresión” (p.2). En un primer nivel de análisis, "El umbral" cumple formalmente con esta regla al conseguir un efecto concentrado de misterio y fascinación a través de la opresión de su paisaje pantanoso y la futilidad del viaje de su protagonista. No obstante, Byatt desarticula y complejiza esta unidad de Poe al insertar este relato de hadas dentro de una estructura novelística donde la lectura se ve necesariamente incompleta por las cartas, los diarios y los debates de los académicos contemporáneo; es completamente necesario ahondar en el contexto del cuento para comprender la complejidad del relato mismo.
 
-### 3. La teoría del cuento moderno
+## 3. La teoría del cuento moderno
 Asimismo, para comprender la operatividad del texto, resulta decisivo aplicar la célebre teoría expuesta por Ricardo Piglia en sus Tesis sobre el cuento (1986). Piglia postula que un cuento siempre narra dos historias simultáneas, una historia visible (Historia 1) y una historia secreta (Historia 2) que el lector debía vislumbrar entre líneas, construida de forma implícita en los recovecos de la historia explicita, y cuyo descubrimiento final genera el efecto de sorpresa en el relato clásico, o permanece fundida en la ambigüedad en el cuento moderno. En "El umbral", esta dualidad de causalidades se despliega de la siguiente manera:
 
 - **Historia 1 (Superficie):** Consiste en el relato casi mitológico donde el doncel cruza la landa y se ve forzado a elegir entre tres hermosas damas místicas (damas blancas) que portan estuches brillantes para poder acceder a otro reino y obtener la cura para su padre.
@@ -71,6 +71,8 @@ A partir de estas revelaciones, se abren interrogantes fundamentales para futura
 
 Asimismo, cabe preguntarse de qué manera este relato de hadas reformula el concepto mismo de la mujer creadora en la literatura contemporánea, y si su apología del silencio y el retiro como únicas vías de autonomía sigue siendo un diagnóstico válido o una advertencia frente a las demandas de visibilidad de nuestra época. El estudio de textos híbridos y complejos como "El umbral" reafirma la importancia innegable de aproximarse a la literatura como un problema vivo, móvil y dinámico, ajeno a clasificaciones académicas estáticas. Analizar las fracturas de la mímesis y la confluencia de géneros permite entender que las formas literarias no son fronteras rígidas o jaulas de luz destinadas a la repetición inerte de fórmulas, pero sí deberían funcionar como espacios de constante transformación, debate crítico y ***libertad***.
 
+Se despide amablemente,
+AB
 ---
 
 ### Bibliografía y Referencias
