@@ -80,6 +80,26 @@ body {
     overflow-x: hidden;
 }
 
+/* Prevención Universal de Desbordamiento Horizontal (Evita que textos/URLs largas ensanchen la pantalla) */
+html, body, main, .binder-container, .binder-inner-page, .article-reading-container, .article-editorial-grid, .article-content-column, .article-body-text, .post-detail-body {
+    max-width: 100%;
+    min-width: 0; /* Permite que las columnas de CSS Grid se reduzcan adecuadamente */
+}
+
+.article-content-column {
+    min-width: 0;
+}
+
+p, li, blockquote, figcaption, span, div {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+a {
+    overflow-wrap: anywhere;
+    word-break: break-all;
+}
+
 /* Progress bar de lectura */
 .reading-progress-container {
     position: fixed;
@@ -894,6 +914,7 @@ body {
 .article-content-column {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .article-header-meta {
@@ -946,6 +967,7 @@ body {
     font-size: 1.15rem;
     line-height: 1.8;
     color: var(--text-primary);
+    min-width: 0;
 }
 
 .article-body-text > p:first-of-type::first-letter,

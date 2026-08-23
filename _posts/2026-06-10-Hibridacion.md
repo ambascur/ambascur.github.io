@@ -77,14 +77,14 @@ AB
 
 ### Bibliografía y Referencias
 
-Byatt, A. S. (2025). Posesión: Romance. Editorial Anagrama.
+Byatt, A. S. (2025). *Posesión: Romance*. Editorial Anagrama.
 
-Piglia, R. (1986). Formas breves. Anagrama. https://analisisycriticademediosunlp.wordpress.com/wpcontent/uploads/2016/04/piglia-ricardo-formas-breves-desconocido.pdf
+Piglia, R. (1986). *Formas breves*. Anagrama. [Ver fuente en línea](https://analisisycriticademediosunlp.wordpress.com/wpcontent/uploads/2016/04/piglia-ricardo-formas-breves-desconocido.pdf)
 
-Poe, E. A. (1846). Filosofía de la composición. https://ficcionparadummies.wordpress.com/wpcontent/uploads/2014/11/filosofia-de-la-composicion-poe.pdf
+Poe, E. A. (1846). *Filosofía de la composición*. [Ver fuente en línea](https://ficcionparadummies.wordpress.com/wpcontent/uploads/2014/11/filosofia-de-la-composicion-poe.pdf)
 
-Shklovski, V. (1917). El arte como recurso. En T. Todorov (Ed.), Teoría de la literatura de los formalistas rusos (pp. 2-13).
+Shklovski, V. (1917). *El arte como recurso*. En T. Todorov (Ed.), *Teoría de la literatura de los formalistas rusos* (pp. 2-13).
 
-Tomashevski, B. (1982). Temática. En T. Todorov (Ed.), Teoría de la literatura de los formalistas rusos (pp. 199-232).
+Tomashevski, B. (1982). *Temática*. En T. Todorov (Ed.), *Teoría de la literatura de los formalistas rusos* (pp. 199-232).
 
- Características de los formalistas rusos y del esquema de la poética de Jakobson (pp. 2-7).
+Características de los formalistas rusos y del esquema de la poética de Jakobson (pp. 2-7).
