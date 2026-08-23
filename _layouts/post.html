@@ -84,14 +84,7 @@
                 {% if page_img == nil or page_img == "" %}{% assign page_img = page.cover %}{% endif %}
 
                 <!-- Estructura de Lectura en 2 Columnas estilo Revista de Arte -->
-                <article class="article-reading-container"
-                    {% if page.bg_color or page.accent_color %}
-                    style="
-                        {% if page.bg_color %}--post-bg: {{ page.bg_color }};{% endif %}
-                        {% if page.accent_color %}--post-accent: {{ page.accent_color }};{% endif %}
-                    "
-                    {% endif %}
-                >
+                <article class="article-reading-container" style="--post-bg: {{ page.bg_color | default: 'initial' }}; --post-accent: {{ page.accent_color | default: 'initial' }};">
                     <div class="article-editorial-grid {% if page_img == nil or page_img == '' %}no-image{% endif %}">
                         
                         {% if page_img and page_img != "" %}
