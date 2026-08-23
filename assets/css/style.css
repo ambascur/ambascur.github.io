@@ -77,7 +77,7 @@ body {
     transition: background-color var(--transition-fast), color var(--transition-fast);
     padding: 0;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    overflow-x: clip; /* clip evita barras horizontales sin romper position: sticky */
 }
 
 /* Prevención Universal de Desbordamiento Horizontal (Evita que textos/URLs largas ensanchen la pantalla) */
@@ -132,7 +132,7 @@ a {
     border: 2px solid var(--border-heavy);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
     position: relative;
-    overflow: hidden;
+    /* overflow: visible implícito para permitir que position: sticky funcione en los hijos */
 }
 
 /* Anillos Metálicos Superiores */
