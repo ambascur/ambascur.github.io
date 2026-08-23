@@ -10,6 +10,8 @@ keywords:
   - Filosofía
   - Rousseau
 excerpt: El contrato social es un concepto clave dentro de la filosofía política.
+bg_color: "#faf7af"
+accent_color: "#e66747"
 ---
 ## Abstract (Resumen)
 El contrato social es un concepto clave dentro de la filosofía política. Comprender cómo funcionan nuestras sociedades de la mano de controvertidas personalidades como JJ. Rousseau, J. Locke, T. Hobbes, nos permitirá responder el siguiente planteamiento. ¿Cómo es que presidentes contemporáneos ejercen los mismos niveles de poder que los antiguos guerreros? 
