@@ -15,16 +15,6 @@
 
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
-    <!-- Colores del post inyectados en :root para que cubran toda la página -->
-    {% if page.bg_color or page.accent_color %}
-    <style>
-        :root {
-            {% if page.bg_color %}--post-bg: {{ page.bg_color }};{% endif %}
-            {% if page.accent_color %}--post-accent: {{ page.accent_color }};{% endif %}
-        }
-    </style>
-    {% endif %}
-
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme');
@@ -36,122 +26,151 @@
         })();
     </script>
 </head>
-
-<!-- El body adopta el color de fondo del post directamente (igual que HA!) -->
-<body class="post-page">
-
-    <!-- Barra de progreso de lectura (adopta accent_color del post) -->
+<body>
     <div class="reading-progress-container">
         <div class="reading-progress-bar" id="readingProgressBar"></div>
     </div>
 
-    <!-- Navegación minimal estilo HA! — solo flecha de vuelta + título del blog -->
-    <nav class="post-nav">
-        <a href="{{ '/#posts' | relative_url }}" class="post-nav-back">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="15" y1="8" x2="1" y2="8"/>
-                <polyline points="7 2 1 8 7 14"/>
-            </svg>
-            Publicaciones
-        </a>
+    <div class="editorial-demo-wrapper">
+        <div class="binder-container">
+            
+            <!-- Anillos Metálicos en la parte superior -->
+            <div class="binder-rings-strip">
+                <div class="binder-ring-hole"></div>
+                <div class="binder-ring-hole"></div>
+                <div class="binder-ring-hole"></div>
+                <div class="binder-ring-hole"></div>
+                <div class="binder-ring-hole"></div>
+                <div class="binder-ring-hole"></div>
+            </div>
 
-        <a href="{{ '/' | relative_url }}" class="post-nav-logo">
-            {{ site.title | upcase }}
-        </a>
-
-        <button class="post-nav-theme" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Cambiar tema">
-            <span id="themeText">◑</span>
-        </button>
-    </nav>
-
-    <!-- Contenedor principal del artículo -->
-    <main class="post-main">
-        {% assign page_img = page.image %}
-        {% if page_img == nil or page_img == "" %}{% assign page_img = page.cover %}{% endif %}
-
-        <div class="post-layout {% if page_img == nil or page_img == '' %}post-layout--no-image{% endif %}">
-
-            <!-- ═══════════════════════════════════════
-                 COLUMNA IZQUIERDA: Imagen sticky sin marco
-                 ═══════════════════════════════════════ -->
-            {% if page_img and page_img != "" %}
-            <aside class="post-image-col">
-                <div class="post-image-sticky">
-                    <img
-                        src="{{ page_img | relative_url }}"
-                        alt="{{ page.title }}"
-                        class="post-image-main"
-                    >
-                    <p class="post-image-expand">Ampliar</p>
+            <div class="binder-inner-page">
+                
+                <!-- Barra Superior Editorial -->
+                <div class="masthead-archive-bar">
+                    <div>ARTÍCULO / VOL. I • {{ page.date | date: "%Y" }}</div>
+                    <div>{{ site.author | upcase }}</div>
+                    <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Cambiar tema">
+                        [ <span id="themeText">MODO OSCURO</span> ]
+                    </button>
                 </div>
-            </aside>
-            {% endif %}
 
-            <!-- ═══════════════════════════════════════
-                 COLUMNA DERECHA: Título + Texto
-                 ═══════════════════════════════════════ -->
-            <div class="post-content-col">
-
-                <!-- Título y subtítulo -->
-                <header class="post-header">
-                    <h1 class="post-title">{{ page.title }}</h1>
-                    {% if page.subtitle and page.subtitle != "" %}
-                    <p class="post-subtitle">{{ page.subtitle }}</p>
-                    {% endif %}
+                <!-- Cabecera Principal -->
+                <header class="header-editorial-main">
+                    <div class="mega-editorial-title">
+                        <div class="title-main-text">
+                            <a href="{{ '/' | relative_url }}">TRABAJOS<span class="slash">/</span></a>
+                        </div>
+                        <div class="title-script-text">
+                            Archivo
+                        </div>
+                    </div>
                 </header>
 
-                <!-- Meta: autor + fecha + tiempo de lectura -->
-                <div class="post-meta-row">
-                    <span class="post-meta-author">{{ site.author }}</span>
-                    <span class="post-meta-sep">·</span>
-                    <time class="post-meta-date">{{ page.date | date: "%d %b, %Y" }}</time>
-                    {% assign words = page.content | number_of_words %}
-                    {% assign minutes = words | divided_by: 180 %}
-                    {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
-                    <span class="post-meta-sep">·</span>
-                    <span class="post-meta-read">~{{ minutes }} min de lectura</span>
-                </div>
+                <!-- Navegación -->
+                <nav class="nav-menu">
+                    <a href="{{ '/' | relative_url }}" class="nav-item">INICIO</a>
+                    <a href="{{ '/#posts' | relative_url }}" class="nav-item active">PUBLICACIONES</a>
+                    <a href="{{ '/#research' | relative_url }}" class="nav-item">INVESTIGACIÓN</a>
+                    <a href="{{ '/#about' | relative_url }}" class="nav-item">ACERCA DE</a>
+                </nav>
 
-                <!-- Categorías y etiquetas como pills con borde (estilo HA!) -->
-                {% assign all_categories = page.categories %}
-                {% assign all_keywords = page.keywords %}
-                {% if all_keywords == nil or all_keywords.size == 0 %}
-                    {% assign all_keywords = page.tags %}
-                {% endif %}
-                {% if all_categories.size > 0 or all_keywords.size > 0 %}
-                <div class="post-pills-row">
-                    {% for cat in all_categories %}
-                    <a href="{{ '/#posts?category=' | relative_url }}{{ cat | url_encode }}" class="post-pill">{{ cat }}</a>
-                    {% endfor %}
-                    {% for kw in all_keywords %}
-                    <a href="{{ '/#posts?tag=' | relative_url }}{{ kw | url_encode }}" class="post-pill">{{ kw }}</a>
-                    {% endfor %}
-                </div>
-                {% endif %}
+                <!-- Botón Volver -->
+                <a href="{{ '/#posts' | relative_url }}" class="back-link">
+                    ← VOLVER AL ARCHIVO DE PUBLICACIONES
+                </a>
 
-                <!-- Extracto / Abstract (si existe) -->
-                {% if page.excerpt and page.excerpt != "" %}
-                <div class="post-abstract">
-                    {{ page.excerpt | strip_html }}
-                </div>
-                {% endif %}
+                {% assign page_img = page.image %}
+                {% if page_img == nil or page_img == "" %}{% assign page_img = page.cover %}{% endif %}
 
-                <!-- Cuerpo del artículo -->
-                <div class="post-body">
-                    {{ content }}
-                </div>
+                <!-- Estructura de Lectura en 2 Columnas estilo Revista de Arte -->
+                <article class="article-reading-container"
+                    {% if page.bg_color or page.accent_color %}
+                    style="
+                        {% if page.bg_color %}--post-bg: {{ page.bg_color }};{% endif %}
+                        {% if page.accent_color %}--post-accent: {{ page.accent_color }};{% endif %}
+                    "
+                    {% endif %}
+                >
+                    <div class="article-editorial-grid {% if page_img == nil or page_img == '' %}no-image{% endif %}">
+                        
+                        {% if page_img and page_img != "" %}
+                        <!-- Columna de la Imagen: Completa, Sin Recortar, Sticky (estilo HA!) -->
+                        <div class="article-image-sidebar">
+                            <div class="article-uncropped-frame">
+                                <img src="{{ page_img | relative_url }}" alt="{{ page.title }}" class="article-uncropped-img">
+                                <div class="article-image-caption">
+                                    <span>FIG 1. ILUSTRACIÓN DE ARCHIVO</span>
+                                    <span>{{ page.date | date: "%Y" }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
 
-                <!-- Pie del artículo -->
-                <footer class="post-footer">
-                    <a href="{{ '/#posts' | relative_url }}" class="post-footer-back">
-                        ← Volver a publicaciones
-                    </a>
-                    <p class="post-footer-copy">© {{ site.time | date: '%Y' }} {{ site.author }}</p>
+                        <!-- Columna del Texto de Lectura -->
+                        <div class="article-content-column">
+                            
+                            <div class="article-header-meta">
+                                {% assign cat = page.categories | first %}
+                                {% if cat %}
+                                <a href="{{ '/#posts?category=' | relative_url }}{{ cat | url_encode }}" class="category-badge">
+                                    {{ cat }}
+                                </a>
+                                {% endif %}
+                                <span>FECHA: {{ page.date | date: "%d DE %B, %Y" | upcase }}</span>
+                                {% assign words = page.content | number_of_words %}
+                                {% assign minutes = words | divided_by: 180 %}
+                                {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
+                                <span>/ LECTURA: ~{{ minutes }} MIN</span>
+                            </div>
+
+                            <h1 class="article-header-title">{{ page.title }}</h1>
+
+                            {% if page.excerpt and page.excerpt != "" %}
+                            <div class="article-abstract-box">
+                                <strong>ABSTRACT / RESUMEN:</strong>
+                                {{ page.excerpt | strip_html }}
+                            </div>
+                            {% endif %}
+
+                            <div class="article-body-text">
+                                {{ content }}
+                            </div>
+
+                            <!-- ETIQUETAS -->
+                            {% assign all_keywords = page.keywords %}
+                            {% if all_keywords == nil or all_keywords.size == 0 %}
+                                {% assign all_keywords = page.tags %}
+                            {% endif %}
+
+                            {% if all_keywords and all_keywords.size > 0 %}
+                            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px dashed var(--border-subtle);">
+                                <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.12em;">
+                                    ETIQUETAS DE INVESTIGACIÓN:
+                                </div>
+                                <div class="keywords-container">
+                                    {% for kw in all_keywords %}
+                                    <a href="{{ '/#posts?tag=' | relative_url }}{{ kw | url_encode }}" class="tag-pill" style="text-decoration: none;">
+                                        [ {{ kw }} ]
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+                </article>
+
+                <!-- Pie de Página -->
+                <footer class="footer">
+                    <p>© {{ site.time | date: '%Y' }} {{ site.author }} — LICENCIA CREATIVE COMMONS ATTRIBUTION 4.0 INTERNATIONAL.</p>
+                    <p style="margin-top: 6px; font-size: 0.68rem; opacity: 0.7;">GITHUB PAGES / JEKYLL STATIC PUBLICATION ENGINE</p>
                 </footer>
-
-            </div><!-- /post-content-col -->
-        </div><!-- /post-layout -->
-    </main>
+            </div>
+        </div>
+    </div>
 
     <script>
         function toggleTheme() {
@@ -159,21 +178,37 @@
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
+            updateThemeButtonText(newTheme);
         }
 
-        // Barra de progreso — usa --post-accent si está definido
-        (function() {
+        function updateThemeButtonText(theme) {
+            const text = document.getElementById('themeText');
+            if (text) {
+                text.textContent = theme === 'dark' ? 'MODO CLARO' : 'MODO OSCURO';
+            }
+        }
+
+        // Barra de progreso de lectura — adopta el color de acento del post (Sistema HA!)
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
             const bar = document.getElementById('readingProgressBar');
-            const accent = getComputedStyle(document.documentElement).getPropertyValue('--post-accent').trim();
-            if (bar && accent) bar.style.background = accent;
+            if (bar) {
+                bar.style.width = scrolled + '%';
+                // Obtener el color de acento del article (--post-accent) si está definido
+                const article = document.querySelector('.article-reading-container');
+                if (article) {
+                    const accentColor = getComputedStyle(article).getPropertyValue('--post-accent').trim();
+                    if (accentColor) bar.style.background = accentColor;
+                }
+            }
+        });
 
-            window.addEventListener('scroll', () => {
-                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                if (bar && height > 0) bar.style.width = ((winScroll / height) * 100) + '%';
-            }, { passive: true });
-        })();
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            updateThemeButtonText(currentTheme);
+        });
     </script>
-
 </body>
 </html>
