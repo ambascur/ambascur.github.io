@@ -2,7 +2,7 @@
 layout: post
 title: "Contrato social: Resumen"
 date: 2025-08-04
-image: assets/images/contrato_social.webp
+image: assets/images/contrato.png
 categories:
   - Filosofía
 keywords:
