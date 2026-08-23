@@ -9,6 +9,7 @@ keywords:
   - Reflexión
 excerpt: Las cosas cambian...
 image: assets/images/solo-escribe.png
+bg_color: "#b6c4d1"
 ---
 
 ---
