@@ -8,10 +8,10 @@
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
     <meta name="author" content="{{ site.author }}">
 
-    <!-- Fuentes de Google Fonts -->
+    <!-- Fuentes de Google Fonts para la estética editorial sobria -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cinzel:wght@600;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
@@ -37,15 +37,15 @@
         <div class="reading-progress-bar" id="readingProgressBar"></div>
     </div>
 
-    <!-- Header / Navbar Minimalista Estilo Historia del Arte (HA!) -->
+    <!-- Header / Navbar Minimalista -->
     <header class="ha-navbar">
         <div class="ha-nav-container">
             <a href="{{ '/' | relative_url }}" class="ha-nav-logo">
                 <span class="ha-logo-badge">AB</span>
-                <span class="ha-logo-text">{{ site.title | upcase }}</span>
+                <span class="ha-logo-text">{{ site.title }}</span>
             </a>
             <div class="ha-nav-actions">
-                <a href="{{ '/#posts' | relative_url }}" class="ha-nav-link">← VOLVER AL ARCHIVO</a>
+                <a href="{{ '/#posts' | relative_url }}" class="ha-nav-link">← ARCHIVO</a>
                 <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Cambiar tema">
                     [ <span id="themeText">MODO OSCURO</span> ]
                 </button>
@@ -56,12 +56,12 @@
     {% assign page_img = page.image %}
     {% if page_img == nil or page_img == "" %}{% assign page_img = page.cover %}{% endif %}
 
-    <!-- Main Container Full-Bleed estilo Historia del Arte (HA!) -->
+    <!-- Main Container Full-Bleed Editorial -->
     <main class="ha-article-wrapper">
         <div class="ha-article-grid {% if page_img == nil or page_img == '' %}no-image{% endif %}">
             
             {% if page_img and page_img != "" %}
-            <!-- Columna Izquierda: Imagen Estática Flotante HA! (Sin bordes ni carpeta) -->
+            <!-- Columna Izquierda: Imagen Destacada Sticky Sobria -->
             <div class="ha-image-column">
                 <div class="ha-sticky-image-container">
                     <img src="{{ page_img | relative_url }}" alt="{{ page.title }}" class="ha-main-image">
@@ -69,7 +69,7 @@
             </div>
             {% endif %}
 
-            <!-- Columna Derecha: Contenido y Jerarquía Tipográfica HA! -->
+            <!-- Columna Derecha: Contenido y Jerarquía Tipográfica Editorial -->
             <div class="ha-content-column">
                 
                 <!-- Título y Subtítulo -->
@@ -78,12 +78,12 @@
                 <p class="ha-post-subtitle">{{ page.excerpt | strip_html }}</p>
                 {% endif %}
 
-                <!-- Autor / Bloque Meta Estilo HA! -->
+                <!-- Autor / Bloque Meta -->
                 <div class="ha-author-block">
                     <div class="ha-author-avatar">AB</div>
                     <div class="ha-author-meta">
                         <strong>{{ site.author }}</strong>
-                        <span>{{ page.date | date: "%B %d, %Y" }}</span>
+                        <span>{{ page.date | date: "%d de %B, %Y" }}</span>
                     </div>
                 </div>
 
@@ -112,9 +112,9 @@
                     {% assign words = page.content | number_of_words %}
                     {% assign minutes = words | divided_by: 180 %}
                     {% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
-                    <div class="ha-spec-item"><strong>Lectura:</strong> ~{{ minutes }} minutos</div>
+                    <div class="ha-spec-item"><strong>Lectura estimada:</strong> ~{{ minutes }} minutos</div>
                     <div class="ha-spec-item"><strong>Publicación:</strong> {{ page.date | date: "%d de %B, %Y" }}</div>
-                    <div class="ha-spec-item"><strong>Escrito por:</strong> {{ site.author }}</div>
+                    <div class="ha-spec-item"><strong>Autora:</strong> {{ site.author }}</div>
                 </div>
 
                 <!-- Cuerpo del Artículo -->
@@ -124,7 +124,7 @@
 
                 <!-- Footer del Post -->
                 <footer class="ha-post-footer">
-                    <a href="{{ '/#posts' | relative_url }}" class="ha-back-button">← Volver al Archivo de Publicaciones</a>
+                    <a href="{{ '/#posts' | relative_url }}" class="ha-back-button">← VOLVER AL ARCHIVO DE PUBLICACIONES</a>
                     <p class="ha-copyright">© {{ site.time | date: '%Y' }} {{ site.author }}</p>
                 </footer>
 

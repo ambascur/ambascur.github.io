@@ -2,13 +2,13 @@
 layout: default
 ---
 
-<!-- SECCIÓN INICIO (#home) ESTILO REVISTA / MAGAZINE -->
+<!-- SECCIÓN INICIO (#home) ESTILO REVISTA / PUBLICACIÓN SOBRIA -->
 <div id="home" class="section active">
 
-    <!-- Grilla Principal Asimétrica estilo Revista (Fotos 1, 2, 3) -->
+    <!-- Grilla Principal Asimétrica Editorial -->
     <div class="magazine-grid">
         
-        <!-- Columna Izquierda: Índice de Trabajos Seleccionados (Foto 1) -->
+        <!-- Columna Izquierda: Índice de Trabajos Seleccionados -->
         <div class="index-column">
             <h3 class="index-column-title">TRABAJOS SELECCIONADOS</h3>
             {% if site.posts.size > 0 %}
@@ -16,8 +16,8 @@ layout: default
                 {% for post in site.posts %}
                 <li class="archive-item">
                     <a href="{{ post.url | relative_url }}">
-                        {{ post.title }}
-                        <span class="date-badge">[ '{{ post.date | date: "%y" }} ]</span>
+                        <span>{{ post.title }}</span>
+                        <span class="date-badge">'{{ post.date | date: "%y" }}</span>
                     </a>
                 </li>
                 {% endfor %}
@@ -27,7 +27,7 @@ layout: default
             {% endif %}
         </div>
 
-        <!-- Columna Central: Post Destacado con Resaltado SVG (Foto 2) -->
+        <!-- Columna Derecha: Post Destacado Sobrio -->
         <div class="hero-post-card">
             {% assign hero_post = site.posts | first %}
             {% if hero_post %}
@@ -43,70 +43,34 @@ layout: default
                     <div class="hero-image-tag">INVESTIGACIÓN DESTACADA</div>
                 </div>
 
-                {% assign title_words = hero_post.title | split: " " %}
-                {% assign first_word = title_words | first %}
-                {% assign remaining_title = hero_post.title | remove_first: first_word %}
-
                 <h2 class="hero-post-title">
-                    <span class="circled-text-container">
-                        <!-- SVG Óvalo estilo rotulado/circulado a mano (Foto 2) -->
-                        <svg viewBox="0 0 200 60" preserveAspectRatio="none">
-                            <path d="M 10,30 C 15,5 180,2 190,28 C 200,54 25,58 8,35 C 2,20 160,8 185,25" fill="none" stroke="var(--accent-red)" stroke-width="2.5" stroke-dasharray="300" stroke-dashoffset="0"></path>
-                        </svg>
-                        {{ first_word }}
-                    </span>
-                    {{ remaining_title }}
+                    <a href="{{ hero_post.url | relative_url }}">{{ hero_post.title }}</a>
                 </h2>
 
                 <p class="hero-post-excerpt">
                     {{ hero_post.excerpt | strip_html | truncatewords: 35 }}
                 </p>
 
-                <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600;">
+                <div>
                     <a href="{{ hero_post.url | relative_url }}" class="read-more-link">
-                        LEER INVESTIGACIÓN COMPLETA ↗
+                        LEER INVESTIGACIÓN COMPLETA →
                     </a>
                 </div>
             {% endif %}
         </div>
 
-        <!-- Columna Derecha: Tarjetas Inclinadas y Collage (Fotos 2 y 3) -->
-        <div class="collage-column">
-            
-            <!-- Tarjeta Roja Rotada (Foto 1 & 2) -->
-            <div class="rotated-card rotated-card-red">
-                <div class="card-title">DECLARACIÓN / {{ site.time | date: "%Y" }}</div>
-                <div class="card-body">
-                    Espacio de investigación dedicado a las reflexiones personales de una estudiante de filosofía y programación.
-                </div>
-            </div>
-
-            <!-- Tarjeta Blanca estilo Nota (Foto 3) -->
-            <div class="rotated-card">
-                <div class="card-title">AUTORA</div>
-                <div class="card-body">
-                    <strong>{{ site.author }}</strong><br>
-                    Investigación de librepensamiento, con
-                </div>
-                <div class="big-script-quote">
-                    Presencia
-                </div>
-            </div>
-
-        </div>
-
     </div>
 
-    <!-- Sección Inferior Estilo Prensa (Foto 1 abajo) -->
+    <!-- Sección Inferior Estilo Declaración / Manifiesto -->
     <div class="bottom-press-section">
         <div>
             <h3 class="press-headline">
-                HACIA UN <span class="red-text">CONOCIMIENTO</span> MÁS CERCANO
+                HACIA UN <span class="red-text">CONOCIMIENTO</span> MÁS CERCANO Y RIGUROSO
             </h3>
         </div>
         <div>
             <div class="press-body">
-                Espero que el proceso intelectual sea más cercano.
+                Un espacio de investigación dedicado a las reflexiones entre la filosofía, las humanidades y la tecnología. Buscando un diálogo cercano, integrador y de librepensamiento.
             </div>
         </div>
     </div>
@@ -136,7 +100,7 @@ layout: default
         </div>
 
         <!-- Filtro por Etiquetas / Palabras Clave -->
-        <div class="filter-group-title" style="margin-top: 16px;">ETIQUETAS / PALABRAS CLAVE (OBSIDIAN):</div>
+        <div class="filter-group-title" style="margin-top: 18px;">ETIQUETAS / PALABRAS CLAVE:</div>
         <div class="filter-pills-row" id="tagsPillsRow">
             <!-- Generado dinámicamente en JS -->
         </div>
@@ -239,8 +203,8 @@ layout: default
     <div class="research-card">
         <div class="research-num">02</div>
         <div class="research-body">
-            <h3>Artes y humanismo</h3>
-            <p>Análisis de teorías filosóficas, literarias, históricas y humanistas.</p>
+            <h3>Artes y Humanismo</h3>
+            <p>Análisis de teorías filosóficas, literarias, históricas y humanistas aplicadas a las inquietudes contemporáneas.</p>
         </div>
     </div>
 
@@ -248,7 +212,7 @@ layout: default
         <div class="research-num">03</div>
         <div class="research-body">
             <h3>Filosofía de la Tecnología, Programación y Algoritmos</h3>
-            <p>Exploración del impacto social de los algoritmos y la informática, estudiando cómo la filosofía aplicada puede guiar el desarrollo tecnológico hacia el bien común. El devenir de la máquina como sistema integrado en la sociedad, ergo, objeto que configura la experiencia humana.</p>
+            <p>Exploración del impacto social de los algoritmos y la informática, estudiando cómo la filosofía aplicada puede guiar el desarrollo tecnológico hacia el bien común. El devenir de la máquina como sistema integrado en la sociedad.</p>
         </div>
     </div>
 </div>
@@ -264,8 +228,8 @@ layout: default
         Soy <strong>{{ site.author }}</strong>, estudiante universitaria y entusiasta de las humanidades, literatura, tecnología y filosofía. Desde muy joven participo en actividades relacionadas con la electrónica y la informática, manteniendo un profundo interés por las ciencias sociales y las preguntas fundamentales que desafían certezas preestablecidas. Este blog funciona como un laboratorio personal de aprendizaje libre. Un espacio abierto para dialogar, equivocarse, cuestionar y construir conocimiento integrador.
     </div>
 
-    <div class="section-title" style="font-size: 1.3rem; margin-top: 32px;">
-        ÁREAS DE INTERÉS CONCEPTUAL
+    <div class="section-title" style="font-size: 0.8rem; margin-top: 36px;">
+        <span>ÁREAS DE INTERÉS CONCEPTUAL</span>
     </div>
     
     <div class="interest-list">
@@ -278,19 +242,22 @@ layout: default
         <div class="interest-item">HISTORIA</div>
     </div>
 
-    <div class="section-title" style="font-size: 1.3rem; margin-top: 36px;">
-        CONTACTO & IDENTIFICACIÓN ACADÉMICA
+    <div class="section-title" style="font-size: 0.8rem; margin-top: 40px;">
+        <span>CONTACTO & IDENTIFICACIÓN ACADÉMICA</span>
     </div>
 
     <div class="contact-card">
         <div class="contact-info-item">
-            <strong>EMAIL:</strong> ambascurpinto@gmail.com
+            <strong>EMAIL</strong>
+            ambascurpinto@gmail.com
         </div>
         <div class="contact-info-item">
-            <strong>ORCID:</strong> 0009-0007-5497-2461
+            <strong>ORCID</strong>
+            0009-0007-5497-2461
         </div>
         <div class="contact-info-item">
-            <strong>GITHUB:</strong> ambascur.github.io
+            <strong>GITHUB</strong>
+            ambascur.github.io
         </div>
     </div>
 </div>
